@@ -129,3 +129,28 @@ async def userLogin(user_login:UserLogin):
         return {"status_code":400, "message":"Invalid password"}
 
 
+@app.delete(f"/api/{VERSION}/user/delete")
+async def userDelete(user_delete:UserDelete):
+    
+    if not user_delete.email:
+        return {"status_code":  400, "message":"Please enter email address"}
+
+    query = "SELECT * from users where email = '"+user_delete.email +"' "
+    
+    # print(query,"This is query")
+    
+    check_email_exists = connection.execute(query)
+    
+    data_object=[]
+    for row in check_email_exists:
+        data_object.append(row)
+    
+    # print(data_object,"This is data object")
+    if not data_object:
+        return {"status_code":400, "message":"User doesn't exists"}
+
+    delete_query = "delete from users where email = '"+ user_delete.email+"'"
+    
+    delete_user = connection.execute(delete_query)
+    
+    return {"status_code":200,"message":"User deleted successfully"}
