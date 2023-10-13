@@ -70,7 +70,6 @@ h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: rgb(168, 231, 231);
   transition: all 0.5s;
   z-index: 997;
   padding: 11px 0;
@@ -554,7 +553,6 @@ section {
   width: 120px;
   height: 1px;
   display: inline-block;
-  background: #e6636a;
   margin: 4px 10px;
 }
 
