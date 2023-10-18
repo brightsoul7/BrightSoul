@@ -70,7 +70,7 @@
                 <input type="text" class="search-input" placeholder="Search...">
                 <button class="search-button"><i class="ri-search-line"></i></button>
             </div>
-          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="index.html" >Home</a></li>
           <style>
             /* Style for the dropdown menu */
             .dropdown {
@@ -110,7 +110,7 @@
             }
         </style>
           <div class="dropdown">
-            <a href="#">Self Help</a></li>
+            <a href="#" class="active">Self Help</a></li>
             <div class="dropdown-content">
                 <a href="videos.html">Videos</a>
                 <a href="Music.html">Music</a>
@@ -124,7 +124,7 @@
             </div> 
         </div>    
        
-          <li><a href="index.html" class="getstarted">Login</a></li>
+          <li><a href="login.html" class="getstarted" id="getstarted">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -540,6 +540,24 @@
   <!-- Back to Top Button -->
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+</body>
+  <script>
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    if (isLoggedIn === 'true') {
+        // User is logged in
+        const username = localStorage.getItem('loggedInUser');
+        const menuElement = document.getElementById('getstarted');
+        if (menuElement) {
+          menuElement.textContent = username;
+      } else {
+          console.log("Menu element not found.");
+      }
+    }
+
+  </script>
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox
+  <script src="assets/vendor/glightbox"/>
+</html>

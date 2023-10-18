@@ -97,7 +97,7 @@
             <a href="videos.html">Videos</a>
         </div> 
     </div>        
-          <li><a href="login.html" class="getstarted">Login</a></li>
+          <li><a href="login.html" class="getstarted" id="getstarted">Login</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -328,6 +328,21 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+    if (isLoggedIn === 'true') {
+        // User is logged in
+        const username = localStorage.getItem('loggedInUser');
+        const menuElement = document.getElementById('getstarted');
+        if (menuElement) {
+          menuElement.textContent = username;
+      } else {
+          console.log("Menu element not found.");
+      }
+    }
+  </script>
 
 </body>
 
