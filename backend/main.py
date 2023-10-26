@@ -8,7 +8,8 @@ from pydantic import BaseModel
 from dotenv import load_dotenv
 import os
 from database import SessionLocal, engine
-import bcrypt
+import bcrypt                                   
+from fastapi.middleware.cors import CORSMiddleware
 
 
 load_dotenv()
@@ -17,6 +18,21 @@ database_name=os.getenv("DB_NAME")
 print(database_name,"database name")
 
 app = FastAPI()
+
+origins = [
+    "http://localhost",
+    "http://localhost:3000",  
+    "*",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 connection=engine.connect()
 VERSION=os.getenv("VERSION")
 
@@ -36,6 +52,14 @@ class UserLogin(BaseModel):
     
 class UserDelete(BaseModel):
     email:str
+    
+class EventRegister(BaseModel):
+    userId : int
+    image:str
+    eventTitle:str
+    eventDesctiption:str
+    price:str
+    
     
 
 @app.post(f"/api/{VERSION}/user/registration")
@@ -123,7 +147,7 @@ async def userLogin(user_login:UserLogin):
     # print(hashed_password.encode('utf-8'),"This is stored hashed password")
     
     if hashed_entered_password == hashed_password.encode('utf-8'):
-        return {"status_code":200, "message":"Login successful"}
+        return {"status_code":200, "message":"Login successful","user_name":data_object[0][1]}
     
     else:
         return {"status_code":400, "message":"Invalid password"}
@@ -154,3 +178,56 @@ async def userDelete(user_delete:UserDelete):
     delete_user = connection.execute(delete_query)
     
     return {"status_code":200,"message":"User deleted successfully"}
+
+
+
+@app.post(f"/api/{VERSION}/event/registration")
+async def eventRegistration(event_register:EventRegister):
+    if not event_register.userId:
+        return {"status_code":400,"message":"invalid user id"}
+    
+    if not event_register.image:
+        return {"status_code":400,"message":"invalid image address"}
+    
+    if not event_register.eventTitle:
+        return {"status_code":400,"message":"invalid image address"}
+    
+    if not event_register.eventDesctiption:
+        return {"status_code":400,"message":"invalid image address"}
+    
+    if not event_register.price:
+        return {"status_code":400,"message":"invalid image address"}
+    
+    user_query = f"SELECT * from users where user_id ={event_register.userId}"
+
+    check_user_exists = connection.execute(user_query)
+    
+    user_object = []
+    for row in check_user_exists:
+        user_object.append(row)
+    
+    if not user_object:
+        return {"status_code":400,"message":"user doesn't exists"}
+    
+    query = f"SELECT * FROM events WHERE user_id = {event_register.userId} AND event_title = '{event_register.eventTitle}'"
+    
+
+    check_event_exists = connection.execute(query)
+    
+    data_object = []
+    for row in check_event_exists:
+        data_object.append(row)
+        
+    if not data_object:
+        insert_query = f"INSERT INTO events (user_id,image, event_title, event_description, price) VALUES (  {event_register.userId},'"+ event_register.image+"', '"+ event_register.eventTitle+"', '"+event_register.eventDesctiption+"','"+event_register.price+"')"
+        event_create = connection.execute(insert_query)
+        return {"status_code":200, "message":"event created successfully"}
+    
+    else:
+        return {"status_code":400,"message":"user already registerd"}
+    
+    
+
+
+    
+    
