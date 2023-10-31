@@ -227,7 +227,21 @@ async def eventRegistration(event_register:EventRegister):
         return {"status_code":400,"message":"user already registerd"}
     
     
+@app.get("/events/{user_id}")
+async def getEventDetails(user_id:int):
+    user_query = f"SELECT * from users where user_id ={user_id}"
 
-
+    check_user_exists = connection.execute(user_query)
+    
+    user_object = []
+    for row in check_user_exists:
+        user_object.append(row)
+    
+    if not user_object:
+        return {"status_code":400,"message":"user doesn't exists"}
+    
+    query = f"SELECT * FROM events WHERE user_id = {user_id}"
+    events =connection.execute(query).fetchall()
+    return events
     
     
