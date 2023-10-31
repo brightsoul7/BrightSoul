@@ -4,25 +4,105 @@
         <meta name="viewport" Content="width=device-width,initial-scale=1.0">
         <title>BrightSoul-Login</title>
         <link rel="stylesheet" href="./assets/css/green.css">
+        <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <style>
+          /* Style for the dropdown menu */
+          .dropdown {
+              position: relative;
+              display: inline;
+          }
+      
+          /* Style for the dropdown button */
+          
+      
+          /* Style for the dropdown content (hidden by default) */
+          .dropdown-content {
+              display: none;
+              position: absolute;
+              background-color: #f1f1f1;
+              min-width: 160px;
+              box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+              z-index: 1;
+          }
+      
+          /* Style for the individual dropdown items */
+          .dropdown-content a {
+              color: #333;
+              padding: 12px 16px;
+              text-decoration: none;
+              display: block;
+          }
+      
+          /* Change color on hover */
+          .dropdown-content a:hover {
+              background-color: #ddd;
+          }
+      
+          /* Show the dropdown menu when the button is hovered over */
+          .dropdown:hover .dropdown-content {
+              display: block;
+          }
+      </style>  
+
     </head>
 
     <body>
+      <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+    
+          <h1 class="logo me-auto"><a href="index.html">Bright soul</a></h1>
+    
+    
+          <nav id="navbar" class="navbar">
+            <ul>
+              <li><a href="index.html" class="active">Home</a></li>
+    
+              
+              <div class="dropdown">
+                <a href="#">Self Help</a></li>
+                <div class="dropdown-content">
+                    <a href="videos.html">Videos</a>
+                    <a href="Music.html">Music</a>
+                </div> 
+            </div>         
+    
+    
+            
+          </style>
+          <div class="dropdown">
+            <a href="#">Article     </a></li>
+            <div class="dropdown-content">
+                <a href="blog.html">Blogs</a>
+                <a href="videos.html">Videos</a>
+            </div> 
+        </div>        
+              <li><a href="login.html" class="getstarted" id="getstarted">Login</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav><!-- .navbar -->
+    
+        </div>
+      </header>
+
         <div class="wrapper">
-            <div class="form-box login">
+            <div class="form-box login" id="login-form">
               <h2>Login</h2>
               <form action="#">
                 <div class="input-box">
                   <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                  <input type="email" required>
+                  <input type="email"  id="email" required>
                   <label>Email</label>
                 </div>
                 <div class="input-box">
                   <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                  <input type="password" required>
+                  <input type="password" id="password" required>
                   <label>Password</label>
                 </div>
                 <div class="remember-forgot">
-                  <a href="#">Forgot Password?</a>
+                  <a href="#">Forgot Password ?</a>
                 </div>
                 <button type="submit" class="btn">Login</button>
                 <div class="login-register">
@@ -30,45 +110,175 @@
     
                 </div>
               </form>
+              <p id="message"></p>
             </div>
 
 
             <div class="form-box register">
                 <h2>Registration</h2>
-                <form action="#">
+                <form action="#"  id="registration-form" >
                   <div class="input-box">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <input type="text" required>
+                        <input type="text" id="user_name" required>
                         <label>Username</label>
                   </div>
                   <div class="input-box">
                     <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                    <input type="email" required>
+                    <input type="email" id="register_email" required>
                     <label>Email</label>
                   </div>
                   <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                    <input type="password" required>
+                    <input type="password" id="register_password" required>
                     <label>Password</label>
                   </div>
                   <div class="input-box">
                     <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                    <input type="password" required>
+                    <input type="password" id="confirm_password" required>
                     <label>Confirm Password</label>
                   </div>
                   <div class="remember-forgot">
                   </div>
-                  <button type="submit" class="btn">Register</button>
+                  <button type="submit"  class="btn">Register</button>
                   <div class="login-register">
                     <p>Have an account ? <a href="#" class="login-link">Login</a> </p>
       
                   </div>
                 </form>
+                <p id="register_message"></p>
               </div>
           </div>
     
     
-          <script src="/assets/js/script revant.js"></script>
+          <script src="./assets/js/script revant.js"></script>
           <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
           <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
+    <script>
+    /*function validatePassword() {
+        var password = document.getElementById("register_password").value;
+        var confirmPassword = document.getElementById("confirm_password").value;
+
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }*/
+
+
+    
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+  
+      // Define the API endpoint URL
+      const apiUrl = 'http://localhost:3000/api/v1/user/login';
+  
+      // Create a request object with the correct field names
+      const request = new Request(apiUrl, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password })
+      });
+  
+      // Send the request using the Fetch API
+      fetch(request)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+             if (data.status_code == 200  ){
+              
+              document.getElementById('message').textContent = `Login successful.`;
+              localStorage.setItem('loggedInUser', data.user_name);
+              localStorage.setItem('isLoggedIn', 'true');
+              window.location.href = 'index.html';
+              /* const loggedInUsername = data.user_name;
+               const menuElement = document.getElementById('getstarted');
+               menuElement.textContent = loggedInUsername;*/
+              } else{
+               document.getElementById('message').textContent = `Login Failed.  ${data.message}!`;
+
+             }
+              // Handle the response data, e.g., display a success message
+          })
+          .catch(error => {
+              // Handle errors, e.g., display an error message
+              document.getElementById('message').textContent = `Login failed: ${error.message}`;
+          });
+  });
+
+
+  document.getElementById('registration-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Retrieve form field values
+    const email = document.getElementById('register_email').value;
+    const username = document.getElementById('user_name').value;
+    const password = document.getElementById('register_password').value;
+    const confirmPassword = document.getElementById('confirm_password').value;
+
+    // Check if passwords match
+    if (password !== confirmPassword) {
+        document.getElementById('register_message').textContent = 'Passwords do not match.';
+        return;
+    }
+
+    // Define the registration API endpoint URL
+    const apiUrl = 'http://localhost:3000/api/v1/user/registration';
+
+    // Create a data object to send in the request
+    const data = {
+        email: email,
+        user_name: username,
+        password: password,
+        confirm_password:confirmPassword,            
+    };
+
+    // Send the POST request using Axios
+    // Create a new request object
+    const request = new Request(apiUrl, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+  });
+
+  // Send the POST request using the Fetch API
+  fetch(request)
+      .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+
+    .then(data => {
+      if (data.status_code == 200  ){
+       
+        document.getElementById('register_message').textContent = `Registration successful.`;
+        setTimeout(function () {
+          location.reload();
+      }, 2000);
+       } else{
+
+        document.getElementById('register_message').textContent = `Registration failed. ${data.message}`;
+      }
+   })
+      
+      .catch(error => {
+          document.getElementById('register_message').textContent = 'Registration failed: ' + error.message;
+      });
+});
+
+  
+
+</script>
