@@ -195,10 +195,11 @@
           })
           .then(data => {
              if (data.status_code == 200  ){
-              
               document.getElementById('message').textContent = `Login successful.`;
               localStorage.setItem('loggedInUser', data.user_name);
               localStorage.setItem('isLoggedIn', 'true');
+              localStorage.setItem('access_token',data.access_token);
+              localStorage.setItem('user_id',data.user_id);
               window.location.href = 'index.html';
               /* const loggedInUsername = data.user_name;
                const menuElement = document.getElementById('getstarted');

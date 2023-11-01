@@ -49,7 +49,105 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <style>
+    .dropdown {
+        position: relative;
+        display: inline;
+    }
 
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a, .user-menu-username {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+   
+    .dropdown-content a:hover{
+        background-color: #ddd;
+    }
+
+    .user-menu:hover .user-menu-content {
+      display: block;
+  }
+
+    .dropdown:hover .dropdown-content  {
+        display: block;
+    }
+
+    .user-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+   
+    #loggedInUserName {
+      cursor: pointer;
+      color: #333;
+    }
+
+    .user-menu-item a {
+      color: #333; /* Set the color to match other menu items */
+  }
+
+  .user-menu:hover .user-menu-content {
+      display: block;
+  }
+
+  .user-menu:hover .user-menu-username:hover + .user-menu-content {
+      display: block;
+  }
+
+    
+    .user-menu-content {
+      display:none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    
+    .user-menu-content a:hover {
+      background-color: #ddd;
+    }
+
+  
+    
+    
+    
+    .user-menu-item a {
+      color: #333; /* Set the color to match other menu items */
+    }
+
+    .user-menu:hover .user-menu-content {
+      display: block;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .user-menu-content,
+    .dropdown-content {
+      display: none;
+    }
+
+    .user-menu-username {
+        font-size: 14px;
+    }
+</style>
 
 </head>
 
@@ -74,45 +172,8 @@
 
 
             
-          <li><a href="index.html" class="active">Home</a></li>
-          <style>
-            /* Style for the dropdown menu */
-            .dropdown {
-                position: relative;
-                display: inline;
-            }
-    
-            /* Style for the dropdown button */
-            
-    
-            /* Style for the dropdown content (hidden by default) */
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f1f1f1;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
-    
-            /* Style for the individual dropdown items */
-            .dropdown-content a {
-                color: #333;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-    
-            /* Change color on hover */
-            .dropdown-content a:hover {
-                background-color: #ddd;
-            }
-    
-            /* Show the dropdown menu when the button is hovered over */
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-        </style>
+          <li><a href="index.html" >Home</a></li>
+          
           <div class="dropdown">
             <a href="#">Self Help</a></li>
             <div class="dropdown-content">
@@ -121,15 +182,25 @@
             </div> 
         </div>    
         <div class="dropdown">
-            <a href="#">Article</a></li>
+            <a href="#" class="active">Article</a></li>
             <div class="dropdown-content">
                 <a href="blog.html">Blog</a>
                 <a href="article videos.html">Article Videos</a>
             </div> 
         </div>    
        
-          <li><a href="index.html" class="getstarted">Login</a></li>
-        </ul>
+        <li id="loginListItem" class="user-menu-item">
+            <a href="login.html" class="getstarted" id="loginButton">Login</a>
+          </li>
+          <div class="user-menu">
+            <span id="loggedInUserName" class="user-menu-username">Your Name</span>
+            <div class="user-menu-content">
+              <a href="profile.html">My Profile</a>
+              <a id="logoutLink" href="#">Logout</a>
+            </div>
+          </div>
+          
+              </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
@@ -545,4 +616,44 @@
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox
+  <script src="assets/vendor/glightbox"></script>
+
+  <script>
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const userMenu = document.querySelector('.user-menu');
+    const userMenuContent = document.querySelector('.user-menu-content');
+  
+    if (isLoggedIn === 'true') {
+      // User is logged in
+      const username = localStorage.getItem('loggedInUser');
+      const loginButton = document.getElementById('loginButton');
+      const loggedInUserName = document.getElementById('loggedInUserName');
+  
+      // Hide the login button and display the logged-in user's name
+      loginButton.style.display = 'none';
+      loggedInUserName.textContent = username;
+      
+      loggedInUserName.addEventListener('mouseenter', () => {
+        //const userMenuContent = document.querySelector('.user-menu-content');
+        userMenuContent.style.display = 'block';
+      });
+  
+      // Add a click event for the logout link
+      const logoutLink = document.getElementById('logoutLink');
+      logoutLink.addEventListener('click', () => {
+        localStorage.setItem('isLoggedIn', 'false');
+        window.location.href = 'index.html'; 
+      });
+    } else {
+      userMenu.style.display = 'none';
+    }
+
+
+userMenu.addEventListener('mouseleave', () => {
+  userMenuContent.style.display = 'none';
+});
+
+
+
+  </script>
+  <html>

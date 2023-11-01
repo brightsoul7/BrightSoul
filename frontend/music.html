@@ -27,42 +27,99 @@
   
 
   <style>
-    /* Style for the dropdown menu */
     .dropdown {
-        position: relative;
-        display: inline;
-    }
+      position: relative;
+      display: inline;
+  }
 
-    /* Style for the dropdown button */
-    
+  
+  .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+  }
 
-    /* Style for the dropdown content (hidden by default) */
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 160px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-    }
+  .dropdown-content a, .user-menu-username {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
 
-    /* Style for the individual dropdown items */
-    .dropdown-content a {
-        color: #333;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
+ 
+  .dropdown-content a:hover{
+      background-color: #ddd;
+  }
 
-    /* Change color on hover */
-    .dropdown-content a:hover {
-        background-color: #ddd;
-    }
+  .user-menu:hover .user-menu-content {
+    display: block;
+}
 
-    /* Show the dropdown menu when the button is hovered over */
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
+  .dropdown:hover .dropdown-content  {
+      display: block;
+  }
+
+  .user-menu {
+    position: relative;
+    display: inline-block;
+  }
+
+ 
+  #loggedInUserName {
+    cursor: pointer;
+    color: #333;
+  }
+
+  .user-menu-item a {
+    color: #333; /* Set the color to match other menu items */
+}
+
+.user-menu:hover .user-menu-content {
+    display: block;
+}
+
+.user-menu:hover .user-menu-username:hover + .user-menu-content {
+    display: block;
+}
+
+  
+  .user-menu-content {
+    display:none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  
+  .user-menu-content a:hover {
+    background-color: #ddd;
+  }
+
+
+  
+  
+  
+  .user-menu-item a {
+    color: #333; /* Set the color to match other menu items */
+  }
+
+  .user-menu:hover .user-menu-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .user-menu-content,
+  .dropdown-content {
+    display: none;
+  }
     
 </style>
 <script src="https://kit.fontawesome.com/c40fc9202c.js" crossorigin="anonymous"></script>
@@ -101,7 +158,17 @@
             <a href="videos.html">Videos</a>
         </div> 
     </div>        
-          <li><a href="login.html" class="getstarted" id="getstarted">Login</a></li>
+    <li id="loginListItem" class="user-menu-item">
+      <a href="login.html" class="getstarted" id="loginButton">Login</a>
+    </li>
+    <div class="user-menu">
+      <span id="loggedInUserName" class="user-menu-username">Your Name</span>
+      <div class="user-menu-content">
+        <a href="profile.html">My Profile</a>
+        <a id="logoutLink" href="#">Logout</a>
+      </div>
+    </div>
+    
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -287,19 +354,39 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-
     const isLoggedIn = localStorage.getItem('isLoggedIn');
-
+    const userMenu = document.querySelector('.user-menu');
+    const userMenuContent = document.querySelector('.user-menu-content');
+  
     if (isLoggedIn === 'true') {
-        // User is logged in
-        const username = localStorage.getItem('loggedInUser');
-        const menuElement = document.getElementById('getstarted');
-        if (menuElement) {
-          menuElement.textContent = username;
-      } else {
-          console.log("Menu element not found.");
-      }
+      // User is logged in
+      const username = localStorage.getItem('loggedInUser');
+      const loginButton = document.getElementById('loginButton');
+      const loggedInUserName = document.getElementById('loggedInUserName');
+  
+      // Hide the login button and display the logged-in user's name
+      loginButton.style.display = 'none';
+      loggedInUserName.textContent = username;
+      
+      loggedInUserName.addEventListener('mouseenter', () => {
+        //const userMenuContent = document.querySelector('.user-menu-content');
+        userMenuContent.style.display = 'block';
+      });
+  
+      // Add a click event for the logout link
+      const logoutLink = document.getElementById('logoutLink');
+      logoutLink.addEventListener('click', () => {
+        localStorage.setItem('isLoggedIn', 'false');
+        window.location.href = 'index.html'; 
+      });
+    } else {
+      userMenu.style.display = 'none';
     }
+
+
+userMenu.addEventListener('mouseleave', () => {
+  userMenuContent.style.display = 'none';
+});
   </script>
   
 

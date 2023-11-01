@@ -48,7 +48,105 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style-vamsi.css" rel="stylesheet">
+  <style>
+    .dropdown {
+        position: relative;
+        display: inline;
+    }
 
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a, .user-menu-username {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+   
+    .dropdown-content a:hover{
+        background-color: #ddd;
+    }
+
+    .user-menu:hover .user-menu-content {
+      display: block;
+  }
+
+    .dropdown:hover .dropdown-content  {
+        display: block;
+    }
+
+    .user-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+   
+    #loggedInUserName {
+      cursor: pointer;
+      color: #333;
+    }
+
+    .user-menu-item a {
+      color: #333; /* Set the color to match other menu items */
+  }
+
+  .user-menu:hover .user-menu-content {
+      display: block;
+  }
+
+  .user-menu:hover .user-menu-username:hover + .user-menu-content {
+      display: block;
+  }
+
+    
+    .user-menu-content {
+      display:none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    
+    .user-menu-content a:hover {
+      background-color: #ddd;
+    }
+
+  
+    
+    
+    
+    .user-menu-item a {
+      color: #333; /* Set the color to match other menu items */
+    }
+
+    .user-menu:hover .user-menu-content {
+      display: block;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .user-menu-content,
+    .dropdown-content {
+      display: none;
+    }
+    
+    .user-menu-username {
+        font-size: 14px;
+    }
+</style>
 
 </head>
 
@@ -66,49 +164,12 @@
         <ul>
 
             <div class="search-box">
-                <input type="text" class="search-input" placeholder="Search...">
+                <input type="text" class="search-input" id="search-input" placeholder="Search...">
                 <button class="search-button"><i class="ri-search-line"></i></button>
             </div>
           <li><a href="index.html" >Home</a></li>
        
-          <style>
-            /* Style for the dropdown menu */
-            .dropdown {
-                position: relative;
-                display: inline;
-            }
-    
-            /* Style for the dropdown button */
-            
-    
-            /* Style for the dropdown content (hidden by default) */
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f1f1f1;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
-    
-            /* Style for the individual dropdown items */
-            .dropdown-content a {
-                color: #333;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-    
-            /* Change color on hover */
-            .dropdown-content a:hover {
-                background-color: #ddd;
-            }
-    
-            /* Show the dropdown menu when the button is hovered over */
-            .dropdown:hover .dropdown-content {
-                display: block;
-            }
-        </style>
+          
           <div class="dropdown">
             <a href="#">Self Help</a></li>
             <div class="dropdown-content">
@@ -122,12 +183,22 @@
             <a href="#" class="active">Article</a></li>
             <div class="dropdown-content">
                 <a href="blog.html">Blog</a>
-                <a href="videos.html">Video</a>
+                <a href="article videos.html">Video</a>
             </div> 
         </div>         
        
-          <li><a href="login.html" class="getstarted" id="getstarted">Login</a></li>
-        </ul>
+        <li id="loginListItem" class="user-menu-item">
+            <a href="login.html" class="getstarted" id="loginButton">Login</a>
+          </li>
+          <div class="user-menu">
+            <span id="loggedInUserName" class="user-menu-username">Your Name</span>
+            <div class="user-menu-content">
+              <a href="profile.html">My Profile</a>
+              <a id="logoutLink" href="#">Logout</a>
+            </div>
+          </div>
+          
+              </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
@@ -155,7 +226,7 @@
                   <span class="headline-description">Empowering Minds, Inspiring Lives: Your Journey to Mental Wellness Starts Here</span>
               </div>
 
-              <a href="" class="article featured-article featured-article-1">
+              <a href="" class="article featured-article featured-article-1 search-filter">
                   <img src="./assets/img/featured/featured-1.jpg" alt="" class="article-image">
                   <span class="article-category">Blog1</span>
 
@@ -172,7 +243,7 @@
                   </div>
               </a>
 
-              <a href="./post.html" class="article featured-article featured-article-2">
+              <a href="./post.html" class="article featured-article featured-article-2 search-filter">
                   <img src="./assets/img/featured/featured-12.jpg" alt="" class="article-image">
                   <span class="article-category">Blog2</span>
 
@@ -189,7 +260,7 @@
                   </div>
               </a>
 
-              <a href="./post.html" class="article featured-article featured-article-3">
+              <a href="./post.html" class="article featured-article featured-article-3 search-filter">
                   <img src="./assets/img/featured/featured-13.jpg" alt="" class="article-image">
                   <span class="article-category">Blog3</span>
 
@@ -212,7 +283,7 @@
 
               <h3 class="title featured-content-title">Trending news</h3>
 
-              <a href="#" class="trending-news-box">
+              <a href="#" class="trending-news-box search-filter">
                   <div class="trending-news-img-box">
                       <span class="trending-number place-items-center">01</span>
                       <img src="./assets/img/trending/trending_1.jpg" alt="" class="article-image">
@@ -231,7 +302,7 @@
                   </div>
               </a>
 
-              <a href="#" class="trending-news-box">
+              <a href="#" class="trending-news-box search-filter">
                   <div class="trending-news-img-box">
                       <span class="trending-number place-items-center">02</span>
                       <img src="./assets/img/trending/trending_2.jpg" alt="" class="article-image">
@@ -250,7 +321,7 @@
                   </div>
               </a>
 
-              <a href="#" class="trending-news-box">
+              <a href="#" class="trending-news-box search-filter">
                   <div class="trending-news-img-box">
                       <span class="trending-number place-items-center">03</span>
                       <img src="./assets/img/trending/trending_3.jpg" alt="" class="article-image">
@@ -269,7 +340,7 @@
                   </div>
               </a>
 
-              <a href="#" class="trending-news-box">
+              <a href="#" class="trending-news-box search-filter">
                   <div class="trending-news-img-box">
                       <span class="trending-number place-items-center">04</span>
                       <img src="./assets/img/trending/trending_4.jpg" alt="" class="article-image">
@@ -288,7 +359,7 @@
                   </div>
               </a>
 
-              <a href="#" class="trending-news-box">
+              <a href="#" class="trending-news-box search-filter">
                   <div class="trending-news-img-box">
                       <span class="trending-number place-items-center">05</span>
                       <img src="./assets/img/trending/trending_5.jpg" alt="" class="article-image">
@@ -323,9 +394,9 @@
 
           <h2 class="title-section-title" data-name="Older posts">Older posts</h2>
 
-          <div class="older-posts-grid-wrapper d-grid">
+          <div id="older-posts-container" class="older-posts-grid-wrapper d-grid">
 
-              <a href="#" class="article d-grid">
+              <a href="#" class="article d-grid search-filter">
                   <div class="older-posts-article-image-wrapper">
                       <img src="./assets/img/older_posts/older_posts_1.jpg" alt="" class="article-image">
                   </div>
@@ -344,7 +415,7 @@
                   </div>
               </a>
 
-              <a href="#" class="article d-grid">
+              <a href="#" class="article d-grid search-filter">
                   <div class="older-posts-article-image-wrapper">
                       <img src="./assets/img/older_posts/older_posts_2.jpg" alt="" class="article-image">
                   </div>
@@ -363,7 +434,7 @@
                   </div>
               </a>
 
-              <a href="#" class="article d-grid">
+              <a href="#" class="article d-grid search-filter">
                   <div class="older-posts-article-image-wrapper">
                       <img src="./assets/img/older_posts/older_posts_3.jpg" alt="" class="article-image">
                   </div>
@@ -382,7 +453,7 @@
                   </div>
               </a>
 
-              <a href="#" class="article d-grid">
+              <a href="#" class="article d-grid search-filter">
                   <div class="older-posts-article-image-wrapper">
                       <img src="./assets/img/older_posts/older_posts_4.jpg" alt="" class="article-image">
                   </div>
@@ -401,7 +472,7 @@
                   </div>
               </a>
 
-              <a href="#" class="article d-grid">
+              <a href="#" class="article d-grid search-filter">
                   <div class="older-posts-article-image-wrapper">
                       <img src="./assets/img/older_posts/older_posts_5.jpg" alt="" class="article-image">
                   </div>
@@ -420,7 +491,7 @@
                   </div>
               </a>
 
-              <a href="#" class="article d-grid">
+              <a href="#" class="article d-grid search-filter">
                   <div class="older-posts-article-image-wrapper">
                       <img src="./assets/img/older_posts/older_posts_6.jpg" alt="" class="article-image">
                   </div>
@@ -621,17 +692,84 @@
 
 <script>
     const isLoggedIn = localStorage.getItem('isLoggedIn');
-
+    const userMenu = document.querySelector('.user-menu');
+    const userMenuContent = document.querySelector('.user-menu-content');
+  
     if (isLoggedIn === 'true') {
-        // User is logged in
-        const username = localStorage.getItem('loggedInUser');
-        const menuElement = document.getElementById('getstarted');
-        if (menuElement) {
-          menuElement.textContent = username;
-      } else {
-          console.log("Menu element not found.");
-      }
+      // User is logged in
+      const username = localStorage.getItem('loggedInUser');
+      const loginButton = document.getElementById('loginButton');
+      const loggedInUserName = document.getElementById('loggedInUserName');
+  
+      // Hide the login button and display the logged-in user's name
+      loginButton.style.display = 'none';
+      loggedInUserName.textContent = username;
+      
+      loggedInUserName.addEventListener('mouseenter', () => {
+        //const userMenuContent = document.querySelector('.user-menu-content');
+        userMenuContent.style.display = 'block';
+      });
+  
+      // Add a click event for the logout link
+      const logoutLink = document.getElementById('logoutLink');
+      logoutLink.addEventListener('click', () => {
+        localStorage.setItem('isLoggedIn', 'false');
+        window.location.href = 'index.html'; 
+      });
+    } else {
+      userMenu.style.display = 'none';
     }
+
+
+userMenu.addEventListener('mouseleave', () => {
+  userMenuContent.style.display = 'none';
+});
+
+
+
+    function performSearch() {
+        const searchInput = document.getElementById('search-input');
+        const searchTerm = searchInput.value.toLowerCase();
+    
+        // Elements you want to search within (for example, article titles)
+        const articleTitles = document.querySelectorAll('.search-filter');
+        
+    
+        articleTitles.forEach(title => {
+                    
+            const titleText = title.textContent.toLowerCase();
+            const article = title.closest('.search-filter');
+            
+            if (titleText.includes(searchTerm)) {
+                article.style.display = 'block'; // Show the element
+            } else {
+                article.style.display = 'none'; // Hide the element
+            }
+        });
+    
+       /* const olderPostsContainer = document.getElementById('older-posts-container');
+        const olderPosts = olderPostsContainer.querySelectorAll('.search-filter');
+    
+        olderPosts.forEach(post => {
+            const postText = post.textContent.toLowerCase();
+            const displayStyle = postText.includes(searchTerm) ? 'block' : 'none !important';
+            post.style.display = displayStyle;
+        });*/
+       
+    }
+    
+    // Event listener for the search button
+    const searchButton = document.querySelector('.search-button');
+    searchButton.addEventListener('click', performSearch);
+    
+    // Event listener for pressing Enter in the search input field
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            performSearch();
+        }
+    });
+ 
 </script>
 
 </html>
