@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Soul</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <style>
+    /* Style for the dropdown menu */
+    .dropdown {
+        position: relative;
+        display: inline;
+    }
+
+    /* Style for the dropdown button */
+    
+
+    /* Style for the dropdown content (hidden by default) */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    /* Style for the individual dropdown items */
+    .dropdown-content a {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color on hover */
+    .dropdown-content a:hover {
+        background-color: #ddd;
+    }
+
+    .user-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+   
+    #loggedInUserName {
+      cursor: pointer;
+      color: #333;
+    }
+
+    .user-menu-item a {
+      color: #333; /* Set the color to match other menu items */
+  }
+
+  .user-menu:hover .user-menu-content {
+      display: block;
+  }
+
+  .user-menu:hover .user-menu-username:hover + .user-menu-content {
+      display: block;
+  }
+
+    
+    .user-menu-content {
+      display:none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    
+    .user-menu-content a:hover {
+      background-color: #ddd;
+    }
+
+  
+    
+    
+    
+    .user-menu-item a {
+      color: #333; /* Set the color to match other menu items */
+    }
+
+    .user-menu:hover .user-menu-content {
+      display: block;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .user-menu-content,
+    .dropdown-content {
+      display: none;
+    }
+    .user-menu-username {
+        font-size: 14px;
+    }
+
+    /* Show the dropdown menu when the button is hovered over */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    /* Additional CSS styles for the events page */
+         .headerevents{
+            margin-top: 80px ;
+            padding: 5px;
+            text-align: center;
+            color: #f1f1f1;
+            text-decoration-color: white;
+            background-color: #4a5562;
+
+         }
+         .headerevents a:hover{
+          color: rgb(254, 254, 254);
+         }
+         .event-container {
+            margin-top: 300px;
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            color-scheme: rgb(0, 0, 0);
+            margin: 50px;
+        }
+
+        .event-card {
+            background-color: rgba(23, 172, 205, 0.886) ;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin: 10px;
+            width: 450px;
+            padding: 10px;
+            margin-top: -5px;
+            margin-left:60px;
+            color-scheme: rgb(0, 0, 0);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px 5px 0 0;
+            color: rgb(0, 0, 0);
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: rgb(0, 0, 0);
+        }
+
+        .event-date {
+            color: #000000;
+            margin-top: 10px;
+        }
+
+        .event-price {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .event-description {
+            margin-top: 10px;
+            color: rgb(0, 0, 0);
+        }
+
+        .register-button {
+            background-color: #333;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 0 0 5px 5px;
+        }
+</style>
+
+</head>
+
+
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">Bright soul</a></h1>
+
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html" >Home</a></li>
+
+          
+          <div class="dropdown">
+            <a href="#">Self Help</a></li>
+            <div class="dropdown-content">
+                <a href="videos.html">Videos</a>
+                <a href="Music.html">Music</a>
+            </div> 
+          </div>
+       
+      </style>
+      <div class="dropdown">
+        <a href="#">Article     </a></li>
+        <div class="dropdown-content">
+            <a href="blog.html">Blogs</a>
+            <a href="videos.html">Videos</a>
+        </div> 
+    </div>  
+    <li><a href="events.html" class="active" style="padding-right:10px;">Events</a></li>
+    <li><a href="Book.html">Books</a></li>    
+    <li><a href="main page.html" style="padding-right:10px;">Relaxation practices</a></li>  
+    <li><a href="creative space.html">Creative space</a></li>
+
+    <li id="loginListItem" class="user-menu-item">
+      <a href="login.html" class="getstarted" id="loginButton">Login</a>
+    </li>
+    <div class="user-menu">
+      <span id="loggedInUserName" class="user-menu-username">Your Name</span>
+      <div class="user-menu-content">
+        <a href="profile.html">My Profile</a>
+        <a id="logoutLink" href="#">Logout</a>
+      </div>
+    </div>
+    
+        </ul>
+  <i class="bi bi-list mobile-nav-toggle"></i>
+</nav><!-- .navbar -->
+
+    </div>
+  </header>
+
+</head>
+<body>
+    
+    <div class="headerevents" >
+         <h1>Events</h1></a>
+    </div>    
+
+   <div class="event-container">
+      <div class="event-card">
+          <img src="assets/img/events/symposium.jpeg" alt="Event 1">
+          <div class="event-title">Health Symposium 2023</div>
+          <div class="event-date">Date: November 16, 2023</div>
+          <div class="event-price">Price : FREE</div>
+          <p class="event-description">Collin County Mental Health Symposium 2023 is a premier event focused on mental health advancements and awareness. Leading experts gather to share recent research and best practices. Attendees gain insights, tools, and resources for holistic mental health support.</p>
+          <a href="#" class="register-button">Register</a>
+      </div>
+      <br>  </br>
+      <br>  </br>
+
+      
+      <div class="event-card">
+          <img src="assets/img/events/event2.jpeg" alt="Event 2">
+          <div class="event-title">Movie Screening & Mental Health Discussion</div>
+          <div class="event-date">Date: November 05, 2023</div>
+          <div class="event-price">Price : FREE</div>
+          <p class="event-description">Join Alpha Kappa Alpha Sorority, Inc., Chi Zeta Omega Chapter for an afternoon movie screening and panel discussion about mental illness.</p>
+          <a href="#" class="register-button">Register</a>
+      </div>
+      <br>  </br>
+      <br>  </br>
+
+
+      <div class="event-card">
+        <img src="assets/img/events/event3.jpeg" alt="Event 3">
+        <div class="event-title">The Faces of Resilience-Mental Health Awareness Event</div>
+        <div class="event-date">Date: November 18, 2023</div> 
+        <div class="event-price">Price : FREE</div>
+        <p class="event-description">Get ready to celebrate resilience and raise mental health awareness at The Faces of Resilience event, where we'll come together to support.</p>
+        <a href="#" class="register-button">Register</a>
+    </div>
+    <br>  </br>
+    <br>  </br>
+    <br>  </br>
+    <br>  </br>
+    <br>  </br>
+
+
+    <div class="event-card">
+      <img src="assets/img/events/event4.jpeg" alt="Event 4">
+      <div class="event-title">Mental Health & the Illusion of Having it All Together</div>
+      <div class="event-date">Date: November 11, 2023</div>
+      <div class="event-price">Price : FREE</div>
+      <p class="event-description">An open conversation about mental well-being, stigma, and the pressure of "having it all together" in the face of intersectional challenges</p>
+      <a href="#" class="register-button">Register</a>
+  </div>
+  <br>  </br>
+  <br>  </br>
+
+
+  <div class="event-card">
+    <img src="assets/img/events/event5.jpeg" alt="Event 5">
+    <div class="event-title">Adult Mental Health First Aid</div>
+    <div class="event-date">Date: November 09, 2023</div>
+    <div class="event-price">Price : FREE</div>
+    <p class="event-description">Mental Health First Aid teaches how to identify, understand & respond to signs of mental illness and substance use challenges among adults.</p>
+    <a href="#" class="register-button">Register</a>
+</div>
+<br>  </br>
+<br>  </br>
+
+
+<div class="event-card">
+  <img src="assets/img/events/event6.jpeg" alt="Event 6">
+  <div class="event-title">Soul care reset for moms raising kids with mental health challenges</div>
+  <div class="event-date">Date: November 03, 2023</div>
+  <div class="event-price">Price : FREE</div>
+  <p class="event-description">Learn how to establish, embrace & maintain SOUL care practices, so you can shift from a daily grind to the best version of yourself!.</p>
+  <a href="#" class="register-button">Register</a>
+</div>
+<br>  </br>
+<br>  </br>
+
+
+      
+
+        <!-- Add more event cards here as needed -->
+    </div>
+    <!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JavaScript for tabs -->
+<script>
+    $(document).ready(function () {
+        $('#myTabs a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+</script>
+
+<footer id="footer">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-info">
+            <h3>Bright soul</h3>
+            <p>
+             1200 dalls drive <br>
+              denton texas USA<br><br>
+              <strong>Phone:</strong> +1 9999999999<br>
+              <strong>Email:</strong> info@example.com<br>
+            </p>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="copyright">
+      &copy; Copyright <strong><span>Bright soul</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+      <!-- All the links in the footer should remain intact. -->
+      <!-- You can delete the links only if you purchased the pro version. -->
+      <!-- Licensing information: https://bootstrapmade.com/license/ -->
+      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/sailor-free-bootstrap-theme/ -->
+      Designed by <a href="">Brightsoul</a>
+    </div>
+  </div>
+</footer><!-- End Footer -->
+
+  
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script>
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const userMenu = document.querySelector('.user-menu');
+    const userMenuContent = document.querySelector('.user-menu-content');
+  
+    if (isLoggedIn === 'true') {
+      // User is logged in
+      const username = localStorage.getItem('loggedInUser');
+      const loginButton = document.getElementById('loginButton');
+      const loggedInUserName = document.getElementById('loggedInUserName');
+
+  
+      // Hide the login button and display the logged-in user's name
+      loginButton.style.display = 'none';
+      loggedInUserName.textContent = username;
+      
+      loggedInUserName.addEventListener('mouseenter', () => {
+        //const userMenuContent = document.querySelector('.user-menu-content');
+        userMenuContent.style.display = 'block';
+      });
+  
+      // Add a click event for the logout link
+      const logoutLink = document.getElementById('logoutLink');
+      logoutLink.addEventListener('click', () => {
+        localStorage.setItem('isLoggedIn', 'false');
+        window.location.href = 'index.html'; 
+      });
+    } else {
+      userMenu.style.display = 'none';
+    }
+
+
+userMenu.addEventListener('mouseleave', () => {
+  userMenuContent.style.display = 'none';
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const isLoggedIn = localStorage.getItem('isLoggedIn');
+  const userMenu = document.querySelector('.user-menu');
+  const userMenuContent = document.querySelector('.user-menu-content');
+  const registerButtons = document.querySelectorAll('.register-button'); // Select all register buttons
+
+  registerButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      // Check if user is logged in when the register button is clicked
+      if (localStorage.getItem('isLoggedIn') !== 'true') {
+        event.preventDefault(); // Prevent the default action
+        alert('You must be logged in to register for events!'); // Show a popup alert
+      }
+    });
+  });
+
+  if (isLoggedIn === 'true') {
+    // User is logged in
+    const username = localStorage.getItem('loggedInUser');
+    const loginButton = document.getElementById('loginButton');
+    const loggedInUserName = document.getElementById('loggedInUserName');
+
+    if (loginButton && loggedInUserName) {
+      // Hide the login button and display the logged-in user's name
+      loginButton.style.display = 'none';
+      loggedInUserName.textContent = username;
+    }
+
+    if (loggedInUserName) {
+      loggedInUserName.addEventListener('mouseenter', () => {
+        if (userMenuContent) {
+          userMenuContent.style.display = 'block';
+        }
+      });
+
+      // Add a click event for the logout link
+      const logoutLink = document.getElementById('logoutLink');
+      if (logoutLink) {
+        logoutLink.addEventListener('click', () => {
+          localStorage.setItem('isLoggedIn', 'false');
+          window.location.href = 'index.html';
+        });
+      }
+    }
+  } else {
+    // User is not logged in
+    if (userMenu) {
+      userMenu.style.display = 'none';
+    }
+  }
+
+  if (userMenu) {
+    userMenu.addEventListener('mouseleave', () => {
+      if (userMenuContent) {
+        userMenuContent.style.display = 'none';
+      }
+    });
+  }
+});
+
+  </script>
+  
+</body>
+</html>

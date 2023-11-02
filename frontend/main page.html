@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Navigation</title>
+    <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+  
+  
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+       
+
+        body {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: calc(100vh - 300px);
+          background-color: #f5f5f5;
+        }
+
+        .container-image {
+            display: flex;
+            gap: 10px;
+        }
+
+        .image-box {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .image-box:hover img {
+            transform: scale(1.1);
+        }
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            text-align: center;
+            padding: 10px 0;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+            color: white;
+        }
+
+        .image-box:hover .caption {
+            transform: translateY(0);
+        }
+
+        .caption h3,
+        .caption p {
+            margin: 0;
+            padding: 0;
+            transition: opacity 0.3s;
+        }
+        .navigate {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background-color: green;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .navigate i {
+            font-size: 24px;
+            color: white;
+        }
+
+
+        /* ... (rest of the styles) ... */
+
+.image-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;  /* allow boxes to wrap to the next line on smaller screens */
+    justify-content: center;  /* center the boxes */
+}
+
+.image-box {
+    position: relative;
+    width: calc(33.33% - 10px);  /* each box takes up about one third of the space minus gap */
+    height: auto;  /* maintain the aspect ratio */
+    overflow: hidden;
+    margin-bottom: 10px;  /* gap between wrapped items */
+}
+
+@media screen and (max-width: 768px) {
+    .image-box {
+        width: calc(50% - 10px);  /* on medium screens, boxes take up half the space */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .image-box {
+        width: 100%;  /* on smaller screens, boxes take up the full width */
+    }
+}
+
+
+
+
+
+/* Enhanced hover effects for images */
+.image-box img {
+    filter: grayscale(100%) brightness(90%);
+    transition: filter 0.5s, transform 0.5s, box-shadow 0.3s;
+}
+
+.image-box:hover img {
+    filter: grayscale(0) brightness(100%);
+   
+}
+
+/* Button hover effect and pulse animation */
+.navigate:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.navigate {
+    
+    transition: background-color 0.3s;
+}
+
+.navigate:hover {
+    background-color: #228B22; /* Darker green for hover */
+}
+
+/* Cursor changes on hover over image box */
+.image-box:hover {
+    cursor: pointer;
+}
+
+
+
+
+/* Enhanced hover effects for images */
+.image-box img {
+    filter: grayscale(100%) brightness(90%);
+    transition: filter 0.5s, transform 0.5s, box-shadow 0.3s;
+}
+
+.image-box:hover img {
+    filter: grayscale(0) brightness(100%);
+   
+}
+
+/* Button hover effect and pulse animation */
+.navigate:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.navigate {
+   
+    transition: background-color 0.3s;
+}
+
+.navigate:hover {
+    background-color: #228B22; /* Darker green for hover */
+}
+
+/* Cursor changes on hover over image box */
+.image-box:hover {
+    cursor: pointer;
+}
+
+
+
+/* Slide in & fade effect for the caption */
+.caption {
+    /* ... existing styles ... */
+    opacity: 0; /* Initially set to hidden */
+    transform: translateY(120%); /* Push it slightly down */
+}
+
+.image-box:hover .caption {
+    opacity: 1; /* On hover, it becomes fully visible */
+    transform: translateY(0); /* Bring it back to its original position */
+}
+
+/* Text glow effect on hover */
+.caption h3,
+.caption p {
+    /* ... existing styles ... */
+    text-shadow: none;
+    transition: text-shadow 0.3s;
+}
+
+.image-box:hover .caption h3,
+.image-box:hover .caption p {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.dropdown {
+    position: relative;
+    display: inline;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a, .user-menu-username {
+    color: #333;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+.dropdown-content a:hover{
+    background-color: #ddd;
+}
+
+.user-menu:hover .user-menu-content {
+  display: block;
+}
+
+.dropdown:hover .dropdown-content  {
+    display: block;
+}
+
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+
+#loggedInUserName {
+  cursor: pointer;
+  color: #333;
+}
+
+.user-menu-item a {
+  color: #333; /* Set the color to match other menu items */
+}
+
+.user-menu:hover .user-menu-content {
+  display: block;
+}
+
+.user-menu:hover .user-menu-username:hover + .user-menu-content {
+  display: block;
+}
+
+
+.user-menu-content {
+  display:none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+
+.user-menu-content a:hover {
+  background-color: #ddd;
+}
+
+
+
+
+
+.user-menu-item a {
+  color: #333; /* Set the color to match other menu items */
+}
+
+.user-menu:hover .user-menu-content {
+  display: block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.user-menu-content,
+.dropdown-content {
+  display: none;
+}
+
+#footer {
+  background-color: #333; 
+  padding: 40px 0;
+  color: #fff; /* Set text color as per your design */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height:300px;
+}
+
+.copyright {
+  background-color: #333; /* Add the background color you want */
+  padding: 40px 0;
+  color: #fff;
+  text-align: center; /* Center the text */
+}
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">Bright soul</a></h1>
+
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html" >Home</a></li>
+
+          
+          <div class="dropdown">
+            <a href="#">Self Help</a></li>
+            <div class="dropdown-content">
+                <a href="videos.html">Videos</a>
+                <a href="Music.html">Music</a>
+            </div> 
+          </div>
+       
+      </style>
+      <div class="dropdown">
+        <a href="#">Article     </a></li>
+        <div class="dropdown-content">
+            <a href="blog.html">Blogs</a>
+            <a href="videos.html">Videos</a>
+        </div> 
+    </div>  
+    <li><a href="events.html"  style="padding-right:10px;">Events</a></li>
+    <li><a href="Book.html">Books</a></li>    
+    <li><a href="main page.html" class="active">Relaxation practices</a></li> 
+    <li><a href="creative space.html">Creative space</a></li>
+ 
+    <li id="loginListItem" class="user-menu-item">
+      <a href="login.html" class="getstarted" id="loginButton">Login</a>
+    </li>
+    <div class="user-menu">
+      <span id="loggedInUserName" class="user-menu-username">Your Name</span>
+      <div class="user-menu-content">
+        <a href="profile.html">My Profile</a>
+        <a id="logoutLink" href="#">Logout</a>
+      </div>
+    </div>
+    
+        </ul>
+  <i class="bi bi-list mobile-nav-toggle"></i>
+</nav><!-- .navbar -->
+
+    </div>
+  </header>
+
+    <div class="container-image">
+        <div class="image-box">
+            <!-- Replace with your images -->
+            <img src="./assets/img/yoga.jpeg" alt="Image 1">
+            <div class="caption">
+                <h3>YOGA</h3>
+                <p></p>
+            </div>
+            <div class="navigate" onclick="navigateToPage('yoga.html')">
+                <i>&gt;</i>
+            </div>
+        </div>
+        <div class="image-box">
+            <img src="./assets/img/meditation.jpeg" alt="Image 2">
+            <div class="caption">
+                <h3>MEDITATION</h3>
+                <p></p>
+            </div>
+            <div class="navigate" onclick="navigateToPage('meditation.html')">
+                <i>&gt;</i>
+            </div>
+        </div>
+        <div class="image-box">
+            <img src="./assets/img/aroma.jpeg" alt="Image 3">
+            <div class="caption">
+                <h3>AROMATHERAPY</h3>
+                <p></p>
+            </div>
+            <div class="navigate" onclick="navigateToPage('scrolling.html')">
+                <i>&gt;</i>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="footer-top">
+          <div class="container">
+            <div class="row">
+    
+              <div class="col-lg-3 col-md-6">
+                <div class="footer-info">
+                  <h3>Bright soul</h3>
+                  <p>
+                   1200 dalls drive <br>
+                    denton texas USA<br><br>
+                    <strong>Phone:</strong> +1 9999999999<br>
+                    <strong>Email:</strong> info@example.com<br>
+                  </p>
+                  <div class="social-links mt-3">
+                    <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+    
+              <!-- <div class="col-lg-2 col-md-6 footer-links">
+                <h4>Useful Links</h4>
+                <ul>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                </ul>
+              </div>
+    
+              <div class="col-lg-3 col-md-6 footer-links">
+                <h4>Our Services</h4>
+                <ul>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">service1</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">service2</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">service3</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">service4</a></li>
+                  <li><i class="bx bx-chevron-right"></i> <a href="#">service5</a></li>
+                </ul>
+              </div>
+    
+              <div class="col-lg-4 col-md-6 footer-newsletter">
+                <h4>Our Newsletter</h4>
+                <p>Subscribe for latest updates</p>
+                <form action="" method="post">
+                  <input type="email" name="email"><input type="submit" value="Subscribe">
+                </form>
+    
+              </div> -->
+    
+            </div>
+          </div>
+        </div>
+    
+        <div class="copyright">
+          <div class="">
+            &copy; Copyright <strong><span>Bright soul</span></strong>. All Rights Reserved
+          </div>
+          <div class="credits">
+    
+            Designed by <a href="">Brightsoul</a>
+          </div>
+        </div>
+      </footer><!-- End Footer -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  
+
+    <script>
+        function navigateToPage(link) {
+            window.location.href = link;
+        }
+
+        const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const userMenu = document.querySelector('.user-menu');
+    const userMenuContent = document.querySelector('.user-menu-content');
+  
+    if (isLoggedIn === 'true') {
+      // User is logged in
+      const username = localStorage.getItem('loggedInUser');
+      const loginButton = document.getElementById('loginButton');
+      const loggedInUserName = document.getElementById('loggedInUserName');
+
+  
+      // Hide the login button and display the logged-in user's name
+      loginButton.style.display = 'none';
+      loggedInUserName.textContent = username;
+      
+      loggedInUserName.addEventListener('mouseenter', () => {
+        //const userMenuContent = document.querySelector('.user-menu-content');
+        userMenuContent.style.display = 'block';
+      });
+  
+      // Add a click event for the logout link
+      const logoutLink = document.getElementById('logoutLink');
+      logoutLink.addEventListener('click', () => {
+        localStorage.setItem('isLoggedIn', 'false');
+        window.location.href = 'index.html'; 
+      });
+    } else {
+      userMenu.style.display = 'none';
+    }
+
+
+userMenu.addEventListener('mouseleave', () => {
+  userMenuContent.style.display = 'none';
+});
+
+    </script>
+</body>
+</html>
