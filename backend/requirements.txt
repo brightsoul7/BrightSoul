@@ -3,3 +3,5 @@ python-dotenv
 SQLAlchemy==1.4.31
 pydantic
 psycopg2-binary
+python-jose[cryptography]
+python-multipart
