@@ -78,8 +78,9 @@ class EventRegister(BaseModel):
     userId : int
     image:str
     eventTitle:str
-    eventDesctiption:str
+    eventDescription:str
     price:str
+    eventDate:str
     
 def get_user(user_id: int):
     user_query = f"SELECT * from users where user_id = {user_id}"
@@ -245,7 +246,7 @@ async def eventRegistration(event_register:EventRegister):
     if not event_register.eventTitle:
         return {"status_code":400,"message":"invalid image address"}
     
-    if not event_register.eventDesctiption:
+    if not event_register.eventDescription:
         return {"status_code":400,"message":"invalid image address"}
     
     if not event_register.price:
@@ -280,7 +281,7 @@ async def eventRegistration(event_register:EventRegister):
             
         
        
-        insert_query = f"INSERT INTO events (user_id,image, event_title, event_description, price) VALUES (  {event_register.userId},'"+ event_register.image+"', '"+ event_register.eventTitle+"', '"+event_register.eventDesctiption+"','"+event_register.price+"')"
+        insert_query = f"INSERT INTO events (user_id,image, event_title, event_description, price,event_date) VALUES (  {event_register.userId},'"+ event_register.image+"', '"+ event_register.eventTitle+"', '"+event_register.eventDescription+"','"+event_register.price+"','"+event_register.eventDate+"')"
         event_create = connection.execute(insert_query)
         
         
@@ -288,14 +289,14 @@ async def eventRegistration(event_register:EventRegister):
         smtp_server.starttls()
         
         msg = MIMEText('We look forward to having you at the event.')
-        msg['Subject'] = 'Event Registration successful'
+        msg['Subject'] = 'Event Registration successful'    
         msg['From'] = gmail
         msg['To'] = user_email[0][0]
         smtp_server.login(gmail, gmail_password)
         smtp_server.sendmail(gmail, user_email[0][0], msg.as_string())
         
         smtp_server.quit()
-        return {"status_code":200, "message":"event created successfully"}
+        return {"status_code":200, "message":"event registerd successfully"}
     
     else:
         return {"status_code":400,"message":"user already registerd"}
