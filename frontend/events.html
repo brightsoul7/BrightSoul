@@ -116,6 +116,8 @@
           color: rgb(254, 254, 254);
          }
          .event-container {
+            margin-top: 300px;
+            position: relative;
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
@@ -124,11 +126,11 @@
         }
 
         .event-card {
-            background-color: rgb(175, 175, 213);
+            background-color: rgba(23, 172, 205, 0.886) ;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
             margin: 10px;
-            width: 300px;
+            width: 450px;
             padding: 10px;
             margin-top: -5px;
             margin-left:60px;
@@ -137,7 +139,7 @@
 
         .event-card img {
             width: 100%;
-            height: 100px;
+            height: 200px;
             object-fit: cover;
             border-radius: 5px 5px 0 0;
             color: rgb(0, 0, 0);
@@ -154,6 +156,11 @@
             margin-top: 10px;
         }
 
+        .event-price {
+            color: red;
+            margin-top: 10px;
+        }
+
         .event-description {
             margin-top: 10px;
             color: rgb(0, 0, 0);
@@ -163,6 +170,8 @@
             background-color: #333;
             color: #fff;
             position: relative;
+            bottom: 0;
+            left: 0;
             text-align: center;
             padding: 10px;
             border: none;
@@ -182,52 +191,79 @@
 
    <div class="event-container">
       <div class="event-card">
-          <img src="./assets/img/features-4.png" alt="Event 1">
-          <div class="event-title">Event 1</div>
-          <div class="event-date">Date: January 15, 2024</div>
-          <p class="event-description">Join us for an exciting event full of fun and learning.</p>
+          <img src="assets/img/events/symposium.jpeg" alt="Event 1">
+          <div class="event-title">Health Symposium 2023</div>
+          <div class="event-date">Date: November 16, 2023</div>
+          <div class="event-price">Price : FREE</div>
+          <p class="event-description">Collin County Mental Health Symposium 2023 is a premier event focused on mental health advancements and awareness. Leading experts gather to share recent research and best practices. Attendees gain insights, tools, and resources for holistic mental health support.</p>
           <a href="#" class="register-button">Register</a>
       </div>
+      <br>  </br>
+      <br>  </br>
+
       
       <div class="event-card">
-          <img src="./assets/img/features-1.png" alt="Event 2">
-          <div class="event-title">Event 2</div>
-          <div class="event-date">Date: February 24, 2024</div>
-          <p class="event-description">A special evening featuring live music and great food.</p>
+          <img src="assets/img/events/event2.jpeg" alt="Event 2">
+          <div class="event-title">Movie Screening & Mental Health Discussion</div>
+          <div class="event-date">Date: November 05, 2023</div>
+          <div class="event-price">Price : FREE</div>
+          <p class="event-description">Join Alpha Kappa Alpha Sorority, Inc., Chi Zeta Omega Chapter for an afternoon movie screening and panel discussion about mental illness.</p>
           <a href="#" class="register-button">Register</a>
       </div>
+      <br>  </br>
+      <br>  </br>
+
 
       <div class="event-card">
-        <img src="./assets/img/features-1.png" alt="Event 3">
-        <div class="event-title">Event 3</div>
-        <div class="event-date">Date: February 10, 2024</div>
-        <p class="event-description">A special evening featuring live music and great food.</p>
+        <img src="assets/img/events/event3.jpeg" alt="Event 3">
+        <div class="event-title">The Faces of Resilience-Mental Health Awareness Event</div>
+        <div class="event-date">Date: November 18, 2023</div> 
+        <div class="event-price">Price : FREE</div>
+        <p class="event-description">Get ready to celebrate resilience and raise mental health awareness at The Faces of Resilience event, where we'll come together to support.</p>
         <a href="#" class="register-button">Register</a>
     </div>
+    <br>  </br>
+    <br>  </br>
+    <br>  </br>
+    <br>  </br>
+    <br>  </br>
+
 
     <div class="event-card">
-      <img src="./assets/img/features-4.png" alt="Event 4">
-      <div class="event-title">Event 4</div>
-      <div class="event-date">Date: February 27, 2024</div>
-      <p class="event-description">A special evening featuring live music and great food.</p>
+      <img src="assets/img/events/event4.jpeg" alt="Event 4">
+      <div class="event-title">Mental Health & the Illusion of Having it All Together</div>
+      <div class="event-date">Date: November 11, 2023</div>
+      <div class="event-price">Price : FREE</div>
+      <p class="event-description">An open conversation about mental well-being, stigma, and the pressure of "having it all together" in the face of intersectional challenges</p>
       <a href="#" class="register-button">Register</a>
   </div>
+  <br>  </br>
+  <br>  </br>
+
 
   <div class="event-card">
-    <img src="./assets/img/features-3.png" alt="Event 5">
-    <div class="event-title">Event 5</div>
-    <div class="event-date">Date: February 11, 2024</div>
-    <p class="event-description">A special evening featuring live music and great food.</p>
+    <img src="assets/img/events/event5.jpeg" alt="Event 5">
+    <div class="event-title">Adult Mental Health First Aid</div>
+    <div class="event-date">Date: November 09, 2023</div>
+    <div class="event-price">Price : FREE</div>
+    <p class="event-description">Mental Health First Aid teaches how to identify, understand & respond to signs of mental illness and substance use challenges among adults.</p>
     <a href="#" class="register-button">Register</a>
 </div>
+<br>  </br>
+<br>  </br>
+
 
 <div class="event-card">
-  <img src="./assets/img/features-4.png" alt="Event 6">
-  <div class="event-title">Event 6</div>
-  <div class="event-date">Date: February 20, 2024</div>
-  <p class="event-description">A special evening featuring live music and great food.</p>
+  <img src="assets/img/events/event6.jpeg" alt="Event 6">
+  <div class="event-title">Soul care reset for moms raising kids with mental health challenges</div>
+  <div class="event-date">Date: November 03, 2023</div>
+  <div class="event-price">Price : FREE</div>
+  <p class="event-description">Learn how to establish, embrace & maintain SOUL care practices, so you can shift from a daily grind to the best version of yourself!.</p>
   <a href="#" class="register-button">Register</a>
 </div>
+<br>  </br>
+<br>  </br>
+
 
       
 
@@ -337,4 +373,5 @@ userMenu.addEventListener('mouseleave', () => {
 
   </script>
   
+</body>
 </html>

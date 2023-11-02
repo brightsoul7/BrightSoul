@@ -178,10 +178,10 @@ body{
     text-decoration: underline;
 }
 
-.btn {
+.btno {
     width: 100%;
     height: 45px;
-    background: #162938;
+    background: red;
     border: none;
     outline: none;
     border-radius: 6px;
