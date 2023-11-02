@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Interaction</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    
+    
+    <!-- Template Main CSS File -->
+    <link rel="stylesheet" href="assets/css/yoga styles.css">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+
+        .dropdown {
+            position: relative;
+            display: inline;
+        }
+        
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .dropdown-content a, .user-menu-username {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        
+        .dropdown-content a:hover{
+            background-color: #ddd;
+        }
+        
+        .user-menu:hover .user-menu-content {
+          display: block;
+        }
+        
+        .dropdown:hover .dropdown-content  {
+            display: block;
+        }
+        
+        .user-menu {
+          position: relative;
+          display: inline-block;
+        }
+        
+        
+        #loggedInUserName {
+          cursor: pointer;
+          color: #333;
+        }
+        
+        .user-menu-item a {
+          color: #333; /* Set the color to match other menu items */
+        }
+        
+        .user-menu:hover .user-menu-content {
+          display: block;
+        }
+        
+        .user-menu:hover .user-menu-username:hover + .user-menu-content {
+          display: block;
+        }
+        
+        
+        .user-menu-content {
+          display:none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          z-index: 1;
+        }
+        
+        
+        .user-menu-content a:hover {
+          background-color: #ddd;
+        }
+        
+        
+        
+        
+        
+        .user-menu-item a {
+          color: #333; /* Set the color to match other menu items */
+        }
+        
+        .user-menu:hover .user-menu-content {
+          display: block;
+        }
+        
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+        
+        .user-menu-content,
+        .dropdown-content {
+          display: none;
+        }
+        
+        #footer {
+          background-color: #333; 
+          padding: 40px 0;
+          color: #fff; /* Set text color as per your design */
+          bottom: 0;
+          width: 100%;
+          clear: both; 
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px; 
+        }
+        .card {
+            
+            margin: 20px;
+        }
+
+        .card-image {
+            height: 200px;
+        }
+        
+        .clear-fix {
+            clear: both;
+            height: 20px; 
+        }
+        
+
+        
+        
+        .copyright {
+          background-color: #333; /* Add the background color you want */
+          padding: 40px 0;
+          color: #fff;
+          text-align: center; /* Center the text */
+        }
+
+        
+        
+        
+        
+        
+        
+            </style>
+</head>
+<body>
+
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container d-flex align-items-center">
+    
+          <h1 class="logo me-auto"><a href="index.html">Bright soul</a></h1>
+    
+    
+          <nav id="navbar" class="navbar">
+            <ul>
+              <li><a href="index.html" class="active">Home</a></li>
+    
+              
+              <div class="dropdown">
+                <a href="#">Self Help</a></li>
+                <div class="dropdown-content">
+                    <a href="videos.html">Videos</a>
+                    <a href="Music.html">Music</a>
+                </div> 
+            </div>         
+    
+    
+            
+          
+          <div class="dropdown">
+            <li><a href="#">Article     </a></li>
+            <div class="dropdown-content">
+                <a href="blog.html">Blogs</a>
+                <a href="videos.html">Videos</a>
+            </div> 
+        </div>        
+        <li id="loginListItem" class="user-menu-item">
+          <a href="login.html" class="getstarted" id="loginButton">Login</a>
+        </li>
+        <div class="user-menu">
+          <span id="loggedInUserName" class="user-menu-username"><i class="fas fa-user"></i> Your Name</span>
+          <div class="user-menu-content">
+            <a href="profile.html">My Profile</a>
+            <a id="logoutLink" href="#">Logout</a>
+          </div>
+        </div>
+        
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav><!-- .navbar -->
+    
+        </div>
+      </header>
+
+<div class="container">
+    <div class="header">
+       <br>  <br>  <br> <br>
+        <p >Yoga reduces stress through controlled breathing and meditation, enhancing mood and promoting relaxation, which positively impacts mental well-being. Its focus on self-awareness, improved sleep, and the mind-body connection offers holistic support for mental health.</p>
+    </div>
+    <div class="row">
+        <!-- Card 1 -->
+        <div class="card" onmouseleave="resetCard(this)">
+            <img class="card-image" src="./assets/img/bridgepose.jpg" alt="Image 1">
+            <button class="learn-more" onclick="expandCard(this)">Learn More</button>
+            <p class="card-description description">By opening the chest and hip flexors, this asana can alleviate stress and mild depression while stimulating the brain and reducing fatigue.<br> <button onclick="window.open('https://www.youtube.com/watch?v=nRwkgZZ55_A', '_blank')">Watch video here</button></p>
+        </div>
+        <!-- Card 2 -->
+        <div class="card" onmouseleave="resetCard(this)">
+            <img class="card-image" src="./assets/img/camelpose.jpg" alt="Image 2">
+            <button class="learn-more" onclick="expandCard(this)">Learn More</button>
+            <p class="card-description description">The deep backbend can help in releasing tension from the front side of the body, promoting deep breathing and alleviating stress. The stretching and opening of the chest and heart area may have a calming effect on the mind.<br> <button onclick="window.open('https://youtu.be/8q7GxnIFsQo?si=MGyL4pNeXyRSK4Uw', '_blank')">Watch video here</button></p>
+        </div>
+        <!-- Card 3 -->
+        <div class="card" onmouseleave="resetCard(this)">
+            <img class="card-image" src="./assets/img/halfmoonpose.jpg" alt="Image 3">
+            <button class="learn-more" onclick="expandCard(this)">Learn More</button>
+            <p class="card-description description">It requires balance and stability, it helps in improving focus and concentration. This focus on physical alignment can foster a deeper connection between the mind and body, promoting a sense of mindfulness.<br> <button onclick="window.open('https://youtu.be/GI0ilM0Zjak?si=u_YjR5Xck8MdL7eB', '_blank')">Watch video here</button></p>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="card" onmouseleave="resetCard(this)">
+            <img class="card-image" src="./assets/img/frogpose.jpg" alt="Image 4">
+            <button class="learn-more" onclick="expandCard(this)">Learn More</button>
+            <p class="card-description description">It requires focus and attention to breathing and body alignment, which can improve concentration and mental clarity.Promotes Emotional Balance.<br> <button onclick="window.open('https://youtu.be/85DGB8naHJ8?si=xK-0zi_V4lgdY9sR', '_blank')">Watch video here</button></p>
+        </div>
+
+        <div class="card" onmouseleave="resetCard(this)">
+            <img class="card-image" src="./assets/img/halfwheelpose.jpg" alt="Image 5">
+            <button class="learn-more" onclick="expandCard(this)">Learn More</button>
+            <p class="card-description description">The physical exertion combined with controlled breathing in this pose stimulates the release of endorphins, promoting feelings of well-being and elevating mood.It  encourages a sense of openness and self-assurance. <br><button onclick="window.open('https://youtu.be/97kzExeOMRs?si=YTp_bZe0cnM8hM0X', '_blank')">Watch video here</button></p>
+        </div>
+
+        <div class="card" onmouseleave="resetCard(this)">
+            <img class="card-image" src="./assets/img/boundanglepose.jpg" alt="Image 6">
+            <button class="learn-more" onclick="expandCard(this)">Learn More</button>
+            <p class="card-description description">This pose is believed to balance the energy flow in the body, helping to create equilibrium and balance in the mind and emotions.<br> <button onclick="window.open('https://youtu.be/hRcvSEtoecg?si=S6zIkh1kAeEs69WI', '_blank')">Watch video here</button></p>
+        </div>
+    </div>
+</div>
+
+<div class="clear-fix"></div>
+
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-info">
+                        <h3>Bright soul</h3>
+                        <p>
+                            1200 Dalls Drive <br>
+                            Denton, Texas, USA<br><br>
+                            <strong>Phone:</strong> +1 9999999999<br>
+                            <strong>Email:</strong> info@example.com<br>
+                        </p>
+                        <div class="social-links mt-3">
+                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <div class="">
+            &copy; Copyright <strong><span>Bright soul</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+            Designed by <a href="">Brightsoul</a>
+        </div>
+    </div>
+</footer><!-- End Footer -->
+
+
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
+
+
+
+
+<script src="assets/js/yoga script.js"></script>
+<script>
+    function navigateToPage(link) {
+        window.location.href = link;
+    }
+
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+const userMenu = document.querySelector('.user-menu');
+const userMenuContent = document.querySelector('.user-menu-content');
+
+if (isLoggedIn === 'true') {
+  // User is logged in
+  const username = localStorage.getItem('loggedInUser');
+  const loginButton = document.getElementById('loginButton');
+  const loggedInUserName = document.getElementById('loggedInUserName');
+
+
+  // Hide the login button and display the logged-in user's name
+  loginButton.style.display = 'none';
+  loggedInUserName.textContent = username;
+  
+  loggedInUserName.addEventListener('mouseenter', () => {
+    //const userMenuContent = document.querySelector('.user-menu-content');
+    userMenuContent.style.display = 'block';
+  });
+
+  // Add a click event for the logout link
+  const logoutLink = document.getElementById('logoutLink');
+  logoutLink.addEventListener('click', () => {
+    localStorage.setItem('isLoggedIn', 'false');
+    window.location.href = 'index.html'; 
+  });
+} else {
+  userMenu.style.display = 'none';
+}
+
+
+userMenu.addEventListener('mouseleave', () => {
+userMenuContent.style.display = 'none';
+});
+
+</script>
+
+</body>
+</html>
