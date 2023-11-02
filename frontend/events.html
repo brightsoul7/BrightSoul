@@ -55,54 +55,73 @@
         background-color: #ddd;
     }
 
+    .user-menu {
+      position: relative;
+      display: inline-block;
+    }
+
+   
+    #loggedInUserName {
+      cursor: pointer;
+      color: #333;
+    }
+
+    .user-menu-item a {
+      color: #333; /* Set the color to match other menu items */
+  }
+
+  .user-menu:hover .user-menu-content {
+      display: block;
+  }
+
+  .user-menu:hover .user-menu-username:hover + .user-menu-content {
+      display: block;
+  }
+
+    
+    .user-menu-content {
+      display:none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    
+    .user-menu-content a:hover {
+      background-color: #ddd;
+    }
+
+  
+    
+    
+    
+    .user-menu-item a {
+      color: #333; /* Set the color to match other menu items */
+    }
+
+    .user-menu:hover .user-menu-content {
+      display: block;
+    }
+    
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    
+    .user-menu-content,
+    .dropdown-content {
+      display: none;
+    }
+    .user-menu-username {
+        font-size: 14px;
+    }
+
     /* Show the dropdown menu when the button is hovered over */
     .dropdown:hover .dropdown-content {
         display: block;
     }
-</style>
-
-</head>
-
-
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center">
-
-      <h1 class="logo me-auto"><a href="index.html">Bright soul</a></h1>
-
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="index.html" >Home</a></li>
-
-          
-          <div class="dropdown">
-            <a href="#">Self Help</a></li>
-            <div class="dropdown-content">
-                <a href="videos.html">Videos</a>
-                <a href="Music.html">Music</a>
-            </div> 
-          </div>
-       
-      </style>
-      <div class="dropdown">
-        <a href="#">Article     </a></li>
-        <div class="dropdown-content">
-            <a href="blog.html">Blogs</a>
-            <a href="videos.html">Videos</a>
-        </div> 
-    </div>  
-    <li><a href="events.html" class="active">Events</a></li>      
-          <li><a href="login.html" class="getstarted" id="getstarted">Login</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
-
-    </div>
-  </header>
-    <style>
-         /* Additional CSS styles for the events page */
+    /* Additional CSS styles for the events page */
          .headerevents{
             margin-top: 80px ;
             padding: 5px;
@@ -179,9 +198,61 @@
             width: 100%;
             border-radius: 0 0 5px 5px;
         }
-        
-        
-    </style>
+</style>
+
+</head>
+
+
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">Bright soul</a></h1>
+
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html" >Home</a></li>
+
+          
+          <div class="dropdown">
+            <a href="#">Self Help</a></li>
+            <div class="dropdown-content">
+                <a href="videos.html">Videos</a>
+                <a href="Music.html">Music</a>
+            </div> 
+          </div>
+       
+      </style>
+      <div class="dropdown">
+        <a href="#">Article     </a></li>
+        <div class="dropdown-content">
+            <a href="blog.html">Blogs</a>
+            <a href="videos.html">Videos</a>
+        </div> 
+    </div>  
+    <li><a href="events.html" class="active" style="padding-right:10px;">Events</a></li>
+    <li><a href="Book.html">Books</a></li>    
+    <li><a href="main page.html" style="padding-right:10px;">Relaxation practices</a></li>  
+    <li id="loginListItem" class="user-menu-item">
+      <a href="login.html" class="getstarted" id="loginButton">Login</a>
+    </li>
+    <div class="user-menu">
+      <span id="loggedInUserName" class="user-menu-username">Your Name</span>
+      <div class="user-menu-content">
+        <a href="profile.html">My Profile</a>
+        <a id="logoutLink" href="#">Logout</a>
+      </div>
+    </div>
+    
+        </ul>
+  <i class="bi bi-list mobile-nav-toggle"></i>
+</nav><!-- .navbar -->
+
+    </div>
+  </header>
+
 </head>
 <body>
     
@@ -369,7 +440,65 @@ userMenu.addEventListener('mouseleave', () => {
   userMenuContent.style.display = 'none';
 });
 
+document.addEventListener('DOMContentLoaded', (event) => {
+  const isLoggedIn = localStorage.getItem('isLoggedIn');
+  const userMenu = document.querySelector('.user-menu');
+  const userMenuContent = document.querySelector('.user-menu-content');
+  const registerButtons = document.querySelectorAll('.register-button'); // Select all register buttons
 
+  registerButtons.forEach(button => {
+    button.addEventListener('click', (event) => {
+      // Check if user is logged in when the register button is clicked
+      if (localStorage.getItem('isLoggedIn') !== 'true') {
+        event.preventDefault(); // Prevent the default action
+        alert('You must be logged in to register for events!'); // Show a popup alert
+      }
+    });
+  });
+
+  if (isLoggedIn === 'true') {
+    // User is logged in
+    const username = localStorage.getItem('loggedInUser');
+    const loginButton = document.getElementById('loginButton');
+    const loggedInUserName = document.getElementById('loggedInUserName');
+
+    if (loginButton && loggedInUserName) {
+      // Hide the login button and display the logged-in user's name
+      loginButton.style.display = 'none';
+      loggedInUserName.textContent = username;
+    }
+
+    if (loggedInUserName) {
+      loggedInUserName.addEventListener('mouseenter', () => {
+        if (userMenuContent) {
+          userMenuContent.style.display = 'block';
+        }
+      });
+
+      // Add a click event for the logout link
+      const logoutLink = document.getElementById('logoutLink');
+      if (logoutLink) {
+        logoutLink.addEventListener('click', () => {
+          localStorage.setItem('isLoggedIn', 'false');
+          window.location.href = 'index.html';
+        });
+      }
+    }
+  } else {
+    // User is not logged in
+    if (userMenu) {
+      userMenu.style.display = 'none';
+    }
+  }
+
+  if (userMenu) {
+    userMenu.addEventListener('mouseleave', () => {
+      if (userMenuContent) {
+        userMenuContent.style.display = 'none';
+      }
+    });
+  }
+});
 
   </script>
   
