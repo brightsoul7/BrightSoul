@@ -86,6 +86,15 @@ class Videos(BaseModel):
     category: str 
     video_url: str
     video_title: str
+
+    
+class Appointment(BaseModel):
+    user_id : int
+    name: str
+    email: str
+    appointment_details: str
+    phone_no: str
+    
     
 def get_user(user_id: int):
     user_query = f"SELECT * from users where user_id = {user_id}"
@@ -373,3 +382,61 @@ async def selfHelpVideos(self_help_videos: Videos):
 
 
   
+
+
+
+@app.post(f"/api/{VERSION}/appointments")
+async def appointmentBooking(appointment: Appointment):
+    
+    if not appointment.user_id:
+        return {"status_code":400, "message":"user id is missing "}
+    
+    if not appointment.name :
+        return {"status_code":400, "message":"name is missing"}
+    
+    if not appointment.email :
+        return {"status_code":400, "message":"email is missing "}
+    
+    if not appointment.appointment_details :
+        return {"status_code":400, "message":"appointment details are missing"}
+    
+    if not appointment.phone_no :
+        return {"status_code":400, "message":"phone number is missing "}
+    
+    
+    user_query = f"SELECT * from users where user_id ={appointment.user_id}"
+
+    check_user_exists = connection.execute(user_query)
+    
+    user_object = []
+    for row in check_user_exists:
+        user_object.append(row)
+    
+    if not user_object:
+        return {"status_code":400,"message":"user doesn't exists"}
+    
+    
+    
+    check_if_appointment_exists = f"SELECT * from appointments where user_id = '{appointment.user_id}' and appointment_details = '{appointment.appointment_details}'"
+    
+    check_exists = connection.execute(check_if_appointment_exists)
+    
+    appointment_exists = []
+    
+    for row in check_exists:
+        appointment_exists.append(row)
+        
+    if len(appointment_exists) > 0:
+        return {"status_code":400, "message":"already booked "}
+    
+    
+    insert_query = f"INSERT INTO appointments(user_id, name, email, appointment_details, phone_no) values('{appointment.user_id}','{appointment.name}','{appointment.email}','{appointment.appointment_details}','{appointment.phone_no}')"
+    
+    
+    insertion = connection.execute(insert_query)
+    
+    return {"status_code":200, "message":"appointment booked successfully"}
+    
+    
+
+    
