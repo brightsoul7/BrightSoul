@@ -82,6 +82,11 @@ class EventRegister(BaseModel):
     price:str
     eventDate:str
     
+class Videos(BaseModel):
+    category: str 
+    video_url: str
+    video_title: str
+    
 def get_user(user_id: int):
     user_query = f"SELECT * from users where user_id = {user_id}"
     user_data = connection.execute(user_query).first()
@@ -329,3 +334,42 @@ async def getEventDetails(user_id:int, token: str = Depends(oauth2_scheme)):
     return events
     
     
+    
+@app.post(f"/api/{VERSION}/selfhelp/videos")
+async def selfHelpVideos(self_help_videos: Videos):
+    
+    
+    
+    if not self_help_videos.video_url:
+        return { "status_code ": 400, "message":"video url is missing"}
+
+    if not self_help_videos.video_title:
+        return {"status_code":400, "message":"video title is missing"}
+    
+    
+    if not self_help_videos.category:
+        return {"status_code":400, "message":"category is missing"}
+    
+    
+    check_if_video_exists_query = f"SELECT * from videos where video_url ='{self_help_videos.video_url}' and video_title='{self_help_videos.video_title}' "
+    
+    check_video_exists =  connection.execute(check_if_video_exists_query)
+    
+    video_object = []
+    
+    for row in check_video_exists:
+        video_object.append(row)
+        
+    if  len(video_object) > 0 :
+        return {"status_code":400, "message":"video already uploaded"}
+    
+    
+    insert_video_query = f"INSERT INTO videos(category, video_type, video_url, video_title) values ('{self_help_videos.category}','selfhelp','{self_help_videos.video_url}','{self_help_videos.video_title}')"
+    
+    create_video = connection.execute(insert_video_query)
+    
+    return {"status_code":200, "message":"video inserted successfully"} 
+
+
+
+  
