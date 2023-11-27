@@ -381,6 +381,13 @@ async def selfHelpVideos(self_help_videos: Videos):
 
 
 
+@app.get("/api/{VERSION}/{category_type}/videos")
+async def getSelfHelpVideos(category_type: str):
+    
+    query = f"SELECT * from videos where video_type = '{category_type}'"
+    selfHelpVideos=connection.execute(query).fetchall()
+    return selfHelpVideos
+
   
 
 
