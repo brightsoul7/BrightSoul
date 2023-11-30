@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Bright Soul</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/music-style.css" rel="stylesheet">
+  
+
+  <style>
+    .dropdown {
+      position: relative;
+      display: inline;
+  }
+
+  
+  .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+  }
+
+  .dropdown-content a, .user-menu-username {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
+
+ 
+  .dropdown-content a:hover{
+      background-color: #ddd;
+  }
+
+  .user-menu:hover .user-menu-content {
+    display: block;
+}
+
+  .dropdown:hover .dropdown-content  {
+      display: block;
+  }
+
+  .user-menu {
+    position: relative;
+    display: inline-block;
+  }
+
+ 
+  #loggedInUserName {
+    cursor: pointer;
+    color: #333;
+  }
+
+  .user-menu-item a {
+    color: #333; /* Set the color to match other menu items */
+}
+
+.user-menu:hover .user-menu-content {
+    display: block;
+}
+
+.user-menu:hover .user-menu-username:hover + .user-menu-content {
+    display: block;
+}
+
+  
+  .user-menu-content {
+    display:none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  
+  .user-menu-content a:hover {
+    background-color: #ddd;
+  }
+
+
+  
+  
+  
+  .user-menu-item a {
+    color: #333; /* Set the color to match other menu items */
+  }
+
+  .user-menu:hover .user-menu-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .user-menu-content,
+  .dropdown-content {
+    display: none;
+  }
+
+
+  
+  .category {
+    cursor: pointer;
+    display: inline-block;
+    padding: 20px;
+    margin: 30px;
+    border: 1px solid #ddd;
+}
+
+.card-container {
+    display: none;
+    width: 100%;
+    transition: display 1s;
+}
+
+.card {
+    margin: 10px auto;
+    width: 30%;
+    height: 90px;
+}
+
+.card-deck {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 60px;
+}
+
+.show {
+    display: flex;
+    justify-content: center;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    width: 18rem;
+    margin: 1rem;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.calendar-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.calendar-container {
+    background: #fff;
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    margin: 5% auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.close-calendar {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    color: #000;
+}
+
+.card:hover {
+    transform: scale(1.09);
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.card-container {
+    transition: transform 0.3s ease-in-out;
+    margin-bottom: 400px;
+}
+
+.category[data-target="1"] {
+    background-color: greenyellow;
+    color: #fff;
+}
+
+.category[data-target="2"] {
+    background-color: greenyellow;
+    color: #fff;
+}
+
+.category[data-target="3"] {
+    background-color: greenyellow;
+    color: #fff;
+}
+
+.category[data-target="4"] {
+    background-color: greenyellow;
+    color: #fff;
+}
+
+.category:hover {
+    background-color: black;
+    cursor: pointer;
+}
+    
+</style>
+<script src="https://kit.fontawesome.com/c40fc9202c.js" crossorigin="anonymous"></script>
+
+</head>
+
+
+<body>
+
+
+    <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">Bright soul</a></h1>
+
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+
+          
+          <div class="dropdown">
+            <a href="#" >Self Help</a></li>
+            <div class="dropdown-content">
+                <a href="videos.html">Videos</a>
+                <a href="Music.html" class="active">Music</a>
+            </div> 
+        </div>         
+
+
+        
+      <div class="dropdown">
+        <a href="#">Article     </a></li>
+        <div class="dropdown-content">
+            <a href="blog.html">Blogs</a>
+            <a href="videos.html">Videos</a>
+        </div> 
+    </div>
+    <li><a href="events.html">Events</a></li> 
+    <li><a href="Book.html">Books</a></li>     
+    <li><a href="main page.html">Relaxation practices</a></li>  
+    <li><a href="creative space.html">Creative space</a></li>
+    <li><a href="therapy.html" class="active">Therapy</a></li>
+         
+    <li id="loginListItem" class="user-menu-item">
+      <a href="login.html" class="getstarted" id="loginButton">Login</a>
+    </li>
+    <div class="user-menu">
+      <span id="loggedInUserName" class="user-menu-username">Your Name</span>
+      <div class="user-menu-content">
+        <a href="profile.html">My Profile</a>
+        <a id="logoutLink" href="#">Logout</a>
+      </div>
+    </div>
+    
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header>
+
+  <div id="categories" class="text-center" style="margin-top:80px;">
+    <div class="category" data-target="1">Disorder</div>
+    <div class="category" data-target="2">Anxiety</div>
+    
+</div>
+
+
+<div id="cards-1" class="card-container text-center">
+    <div class="card-deck show">
+        
+      
+        <div class="card">
+            <img src="./assets/img/14.jpeg" class="card-img-top" alt="Card Image">
+            <div class="card-body">
+                <h5 class="card-title">Dr. Umar Latif, MD</h5>
+                <p class="card-text">Dr. Umar Latif, MD is a psychiatry specialist in Crossroads, TX and has over 25 years of experience in the medical field. He graduated from Allama Iqbal Mc, U Punjab Lahore in 1997. His office accepts new patients and telehealth appointments</p>
+              <br>   <br>
+                <a href="#" class="btn btn-primary">Book Appointment</a>
+            </div>
+        </div>
+       
+
+
+
+        <div class="card">
+          <img src="./assets/img/12.jpeg" class="card-img-top" alt="Card Image">
+          <div class="card-body">
+              <h5 class="card-title">Dr. Stanley Evans</h5>
+              <p class="card-text"> Dr. Stanley Evans, DO is a family medicine specialist in Denton, TX and has over 31 years of experience in the medical field. He graduated from University of North Texas Health Science Center Texas College of Osteopathic Medicine in 1991. He is affiliated with Medical City Denton.</p>
+            
+              <a href="#" class="btn btn-primary">Book Appointment</a>
+          </div>
+      </div>
+
+        <div class="card">
+            <img src="./assets/img/15.jpeg" class="card-img-top"  alt="Card Image" >
+            <div class="card-body">
+                <h5 class="card-title">Dr. Kelly Quakenbush</h5>
+                <p class="card-text">Dr. Kelly  is a psychiatry specialist in Argyle, TX and has over 13 years of experience in the medical field. Dr. Quakenbush has extensive experience in Personality Disorders. She graduated from University of Texas at Austin Dell Medical School in 2009</p>
+                <br>
+                <a href="#" class="btn btn-primary">Book Appointment</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div id="cards-2" class="card-container text-center">
+  <div class="card-deck show">
+   
+      <div class="card">
+          <img src="./assets/img/18.jpeg" class="card-img-top" alt="Card Image">
+          <div class="card-body">
+              <h5 class="card-title">Dr. Raza Sayed, MD </h5>
+              <p class="card-text">Dr. Raza Sayed, MD is a psychiatry specialist in Greenville, TX and has over 28 years of experience in the medical field. Dr. Sayed has extensive experience in Psychotic Disorders. He graduated from KARNATAK UNIVERSITY / KARNATAK MEDICAL COLLEGE in 1994</p>
+             
+              <a href="#" class="btn btn-primary">Book Appointment</a>
+          </div>
+      </div>
+     
+
+
+
+      <div class="card">
+        <img src="./assets/img/17.jpeg" class="card-img-top" alt="Card Image">
+        <div class="card-body">
+            <h5 class="card-title">Dr. Stephen Roskos, MD </h5>
+            <p class="card-text">Dr. Stephen Roskos, MD is a psychiatry specialist in Denton, TX and has over 54 years of experience in the medical field. He graduated from University of Minnesota Medical School in 1968</p>
+            <br>   <br>   <br>
+            <a href="#" class="btn btn-primary">Book Appointment</a>
+        </div>
+    </div>
+
+      <div class="card">
+          <img src="./assets/img/19.jpeg" class="card-img-top" alt="Card Image">
+          <div class="card-body">
+              <h5 class="card-title">Dr. Jeffrey Day, MD</h5>
+              <p class="card-text">Dr. Jeffrey Day, MD is a pediatrics specialist in Denton, TX and has over 10 years of experience in the medical field. He graduated from University of Texas Health San Antonio School of Dentistry in 2008.</p>
+              <br>   <br>   <br>
+              <a href="#" class="btn btn-primary">Book Appointment</a>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+<br/>
+<br/>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="calendar-modal" id="calendarModal">
+<div class="calendar-container">
+  <span class="close-calendar" onclick="closeCalendar()">&times;</span>
+  <h2>Select a Date for Your Appointment</h2>
+  <input type="date" id="appointmentDate" class="form-control">
+  <button class="btn btn-primary mt-3" onclick="scheduleAppointment()">Schedule Appointment</button>
+</div>
+</div>
+
+
+
+
+<footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+  
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>Bright soul</h3>
+              <p>
+               1200 dalls drive <br>
+                denton texas USA<br><br>
+                <strong>Phone:</strong> +1 9999999999<br>
+                <strong>Email:</strong> info@example.com<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+  
+          <!-- <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+  
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">service1</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">service2</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">service3</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">service4</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">service5</a></li>
+            </ul>
+          </div>
+  
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>Subscribe for latest updates</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+  
+          </div> -->
+  
+        </div>
+      </div>
+    </div>
+  
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Bright soul</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/sailor-free-bootstrap-theme/ -->
+        Designed by <a href="">Brightsoul</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+  
+  
+    
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+    
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script>
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      const userMenu = document.querySelector('.user-menu');
+      const userMenuContent = document.querySelector('.user-menu-content');
+    
+      if (isLoggedIn === 'true') {
+        // User is logged in
+        const username = localStorage.getItem('loggedInUser');
+        const loginButton = document.getElementById('loginButton');
+        const loggedInUserName = document.getElementById('loggedInUserName');
+    
+        // Hide the login button and display the logged-in user's name
+        loginButton.style.display = 'none';
+        loggedInUserName.textContent = username;
+        
+        loggedInUserName.addEventListener('mouseenter', () => {
+          //const userMenuContent = document.querySelector('.user-menu-content');
+          userMenuContent.style.display = 'block';
+        });
+    
+        // Add a click event for the logout link
+        const logoutLink = document.getElementById('logoutLink');
+        logoutLink.addEventListener('click', () => {
+          localStorage.setItem('isLoggedIn', 'false');
+          window.location.href = 'index.html'; 
+        });
+      } else {
+        userMenu.style.display = 'none';
+      }
+  
+  
+  userMenu.addEventListener('mouseleave', () => {
+    userMenuContent.style.display = 'none';
+  });
+
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var categoryButtons = document.querySelectorAll('.category');
+    categoryButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var category = this.getAttribute('data-target');
+            var cardContainers = document.querySelectorAll('.card-container');
+            
+            cardContainers.forEach(function(container) {
+                container.style.display = 'none';
+                container.classList.remove('show');
+            });
+
+            var selectedContainer = document.getElementById('cards-' + category);
+            selectedContainer.style.display = 'block';
+            selectedContainer.classList.add('show');
+
+            document.getElementById('categories').style.top = '10vh';
+        });
+    });
+
+    function bookAppointment() {
+        document.getElementById('calendarModal').style.display = 'block';
+    }
+
+    function closeCalendar() {
+        document.getElementById('calendarModal').style.display = 'none';
+    }
+
+    function scheduleAppointment() {
+        var date = document.getElementById('appointmentDate').value;
+        if (date) {
+            alert('Appointment booked successfully for ' + date + '.');
+            closeCalendar();
+        } else {
+            alert('Please select a date.');
+        }
+    }
+
+    var primaryButtons = document.querySelectorAll('.btn-primary');
+    primaryButtons.forEach(function(button) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            bookAppointment();
+        });
+    });
+});
+
+
+
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+
+</body>
+
+
+</html>
