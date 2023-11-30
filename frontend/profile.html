@@ -153,8 +153,7 @@
   padding: 10px;
   position: absolute;
   bottom: 0;
-  width: 100%;
-  z-index: 2; /* Add z-index to keep the footer on top */
+ 
 }
 
 /* Card Styles */
@@ -270,8 +269,7 @@
         <a id="logoutLink" href="#">Logout</a>
       </div>
     </div>
-    <li ><a href="admin.html"  class="admin-menu-item">Admin</a></li>
-
+    
         </ul>
   <i class="bi bi-list mobile-nav-toggle"></i>
 </nav><!-- .navbar -->
@@ -281,7 +279,6 @@
   
   <div class="sidebar" style="height: 100%; padding-top:20px;">
     <a href="#" onclick="showEvents()">Events</a>
-    <a href="#" onclick="showAppointments()">Appointments</a>
 </div>
 
 
@@ -296,13 +293,9 @@
   <!-- Event cards will be dynamically added here -->
   
 </div>
-<div class="appointments-container" id="appointment-container" style="margin-top: 60px; margin-left: 270px;">
-  <!-- Event cards will be dynamically added here -->
-  
-</div>
 
 
-<!-- 
+
   <footer id="footer" class="footer" style="height: 450px; position: fixed; bottom: 0; width: 100%;">
     <div class="footer-top">
       <div class="container">
@@ -342,7 +335,7 @@
         Designed by <a href="">Brightsoul</a>
       </div>
     </div>
-  </footer>  -->
+  </footer> 
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -357,19 +350,6 @@
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     const userMenu = document.querySelector('.user-menu');
     const userMenuContent = document.querySelector('.user-menu-content');
-
-
-    const isAdmin = localStorage.getItem('isAdmin');
-    const adminMenuItems = document.querySelector('.admin-menu-item');
-
-
-    if (isAdmin === 'true') {
-      adminMenuItems.style.display = 'block';
-    } else {
-      adminMenuItems.style.display = 'none';
-    }
-
-
   
     if (isLoggedIn === 'true') {
       // User is logged in
@@ -407,15 +387,13 @@ function showEvents() {
   // Check if the user is logged in
   const isLoggedIn = localStorage.getItem('isLoggedIn');
   const bearerToken = localStorage.getItem('access_token'); 
-  const userId = localStorage.getItem('user_id'); 
  // const cardContainer = document.getElementById('event-cards');
  const eventContainer = document.getElementById('event-container');
 
 
 
   if (isLoggedIn === 'true' && bearerToken) {
-    const apiUrl = `http://localhost:3000/events/${userId}`;
-    //const apiUrl = `http://localhost:3000/events/5`;
+    const apiUrl = 'http://localhost:3000/events/5';
 
     fetch(apiUrl, {
       method: 'GET',
@@ -466,81 +444,6 @@ function showEvents() {
   }
 }
 
-
-
-function showAppointments() {
-  // Check if the user is logged in
-  const isLoggedIn = localStorage.getItem('isLoggedIn');
-  const bearerToken = localStorage.getItem('access_token'); 
-  const userId = localStorage.getItem('user_id'); 
- // const cardContainer = document.getElementById('event-cards');
- const appointmentsContainer = document.getElementById('appointment-container');
-
-
-
-  if (isLoggedIn === 'true' && bearerToken) {
-    //const apiUrl = `http://localhost:3000/api/v1/appointments/5`;
-    const apiUrl = `http://localhost:3000/api/v1/appointments/${userId}`;
-
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${bearerToken}`,
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          console.error('API request failed with status:', response.status);
-        }
-      })
-
-
-    
-      
-      .then((data) => {
-        if (Array.isArray(data)) {
-
-          console.log(data+"this is data")
-          // Clear any existing cards
-          appointmentsContainer.innerHTML = '';
-
-          // Loop through the event data and create cards
-          //<img src="${event.image}" alt="${event.event_title}">
-          data.forEach((event) => {
-
-           
-
-
-            const appointmentCard = document.createElement('div');
-            console.log(event+"this is event")
-            appointmentCard.className = 'card';
-            appointmentCard.innerHTML = `
-            <img src="./assets/img/14.jpeg" class="card-img-top" alt="Card Image">
-            <div class="card-body">
-              <h5 class="card-title">${event.name}</h5>
-              <p class="card-text">${event.appointment_details}</p>
-            </div>  
-            
-           
-            `;
-            appointmentsContainer.appendChild(appointmentCard)
-          });
-        } else {
-          console.log(data+"This is data")
-          console.error('Invalid data format.');
-        }
-        console.log('API response:', data);
-      })
-      .catch((error) => {
-        console.error('API request error:', error);
-      });
-  } else {
-    console.log('User is not logged in or does not have a bearer token.');
-  }
-}
 
 
 

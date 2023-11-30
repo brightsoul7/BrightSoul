@@ -150,6 +150,7 @@
 
 
         
+      </style>
       <div class="dropdown">
         <li><a href="#">Article     </a></li>
         <div class="dropdown-content">
@@ -174,10 +175,8 @@
         <a id="logoutLink" href="#">Logout</a>
       </div>
     </div>
-<li ><a href="admin.html"  class="admin-menu-item">Admin</a></li>
     
         </ul>
-
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
@@ -412,24 +411,10 @@
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     const userMenu = document.querySelector('.user-menu');
     const userMenuContent = document.querySelector('.user-menu-content');
-    
-    
-    const isAdmin = localStorage.getItem('isAdmin');
-    const adminMenuItems = document.querySelector('.admin-menu-item');
-
-
-    if (isAdmin === 'true') {
-      adminMenuItems.style.display = 'block';
-    } else {
-      adminMenuItems.style.display = 'none';
-    }
-
-
-    
+  
     if (isLoggedIn === 'true') {
       // User is logged in
       const username = localStorage.getItem('loggedInUser');
-      const adminButton = document.getElementById('admin-menu');
       const loginButton = document.getElementById('loginButton');
       const loggedInUserName = document.getElementById('loggedInUserName');
 
@@ -447,7 +432,6 @@
       const logoutLink = document.getElementById('logoutLink');
       logoutLink.addEventListener('click', () => {
         localStorage.setItem('isLoggedIn', 'false');
-        localStorage.setItem('isAdmin','false')
         window.location.href = 'index.html'; 
       });
     } else {
