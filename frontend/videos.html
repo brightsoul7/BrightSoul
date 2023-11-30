@@ -148,6 +148,45 @@
         font-size: 14px;
     }
 
+    .featured-articles-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+  
+    .featured-article {
+      flex-basis: calc(33.33% - 20px);
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+  
+    .featured-article:hover {
+      transform: scale(1.05);
+    }
+  
+    .article-data-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 10px;
+      box-sizing: border-box;
+    }
+  
+    .article-data-container h3 {
+      margin: 0;
+    }
+  
+    /* Add a max-width for the iframe to ensure it doesn't overflow the card */
+    .featured-article iframe {
+      max-width: 100%;
+    }
+  
+
       
 </style>
 
@@ -223,17 +262,16 @@
 
   <!-- Featured articles -->
   <section class="featured-articles section section-header-offset">
+    <div class="headline-banner">
+        <span class="headline-description">Brightsoul Video Series: Nurturing Your Mental Health, Inspiring Peaceful Living</span>
+    </div>
 
-    <div class="featured-articles-container container d-grid">
+    <div id="video-container" class="featured-articles-container container ">
 
         <div class="featured-content d-grid">
 
-            <div class="headline-banner">
-               
-                <span class="headline-description">Brightsoul Video Series: Nurturing Your Mental Health, Inspiring Peaceful Living</span>
-            </div>
 
-            <a href="" class="article featured-article featured-article-1">
+            <!-- <a href="" class="article featured-article featured-article-1">
                 <iframe width="432" height="300" src="https://www.youtube.com/embed/-GXfLY4-d8w?si=_gFJbTMFeG6RGY6S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 
                 <div class="article-data-container">
@@ -279,12 +317,12 @@
                     <h3 class="title article-title">Fight Depression</h3>  
 
                 </div>
-            </a>
+            </a> -->
 
             
 
         </div>
-        
+<!--         
         <div class="sidebar d-grid">
 
             <h3 class="title featured-content-title">Videos for peace of mind</h3>
@@ -384,17 +422,16 @@
                 </div>
             </a>
 
-        </div>
+        </div> -->
 
     </div>
 
 </section>
 
 
-</section>
 
 <!-- Older posts -->
-<section class="older-posts section">
+<!-- <section class="older-posts section">
 
     <div class="container">
 
@@ -524,15 +561,11 @@
 
     </div>
 
-</section>
+</section> -->
 
 
 
-        </div>
 
-    </div>
-
-</section>
   
   
 
@@ -655,6 +688,38 @@
 userMenu.addEventListener('mouseleave', () => {
   userMenuContent.style.display = 'none';
 });
+
+
+fetch('http://localhost:3000/api/v1/selfhelp/videos')
+  .then(response => response.json())
+  .then(data => {
+    const videoContainer = document.getElementById('video-container');
+
+    // Iterate through the videos and create HTML elements
+    data.forEach((video, index) => {
+      const videoElement = document.createElement('div');
+      videoElement.className = 'featured-article';
+      videoElement.innerHTML = `
+        <iframe width="432" height="300" src="${video.video_url}" title="${video.video_title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="article-data-container">
+          <div class="article-data">
+            <span class="article-data-spacer"></span>
+          </div>
+          <h3 class="title article-title">${video.video_title}</h3>
+        </div>
+      `;
+
+
+      // Append the video element to the container
+      videoContainer.appendChild(videoElement);
+
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching videos:', error);
+  });
+
+
   </script>
 
 </body>
