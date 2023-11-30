@@ -292,7 +292,7 @@
         <a id="logoutLink" href="#">Logout</a>
       </div>
     </div>
-    <li><a href="forum.html"  >Forum</a></li>
+    <li ><a href="admin.html"  class="admin-menu-item">Admin</a></li>
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -506,6 +506,17 @@
       const isLoggedIn = localStorage.getItem('isLoggedIn');
       const userMenu = document.querySelector('.user-menu');
       const userMenuContent = document.querySelector('.user-menu-content');
+
+
+      const isAdmin = localStorage.getItem('isAdmin');
+    const adminMenuItems = document.querySelector('.admin-menu-item');
+
+
+    if (isAdmin === 'true') {
+      adminMenuItems.style.display = 'block';
+    } else {
+      adminMenuItems.style.display = 'none';
+    }
     
       if (isLoggedIn === 'true') {
         // User is logged in
@@ -585,6 +596,48 @@
         });
     });
 });
+
+
+
+function scheduleAppointment() {
+    const date = document.getElementById('appointmentDate').value;
+    console.log(date+"this is date")
+
+    const timestamp = new Date().getTime();
+
+    if (date) {
+      const userData = {
+        user_id: "5",
+        name: "Dr. Umar Latif, MD",
+        email: `robin${timestamp}@gmail.com`,
+        appointment_details: date,
+        phone_no: "8585858582"
+      };
+
+      // Make a POST request
+      fetch('http://localhost:3000/api/v1/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response as needed
+          console.log('Appointment booked successfully:', data);
+          alert("appointment booked successfully")
+        })
+        .catch(error => {
+          console.error('Error booking appointment:', error);
+          
+        });
+    } else {
+      alert('Please select a date.');
+    }
+  }
+
+
 
 
 
