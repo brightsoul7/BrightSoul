@@ -181,6 +181,8 @@
         <a id="logoutLink" href="#">Logout</a>
       </div>
     </div>
+    <li ><a href="admin.html"  class="admin-menu-item">Admin</a></li>
+
     
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -471,6 +473,16 @@
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     const userMenu = document.querySelector('.user-menu');
     const userMenuContent = document.querySelector('.user-menu-content');
+
+    const isAdmin = localStorage.getItem('isAdmin');
+    const adminMenuItems = document.querySelector('.admin-menu-item');
+
+
+    if (isAdmin === 'true') {
+      adminMenuItems.style.display = 'block';
+    } else {
+      adminMenuItems.style.display = 'none';
+    }
   
     if (isLoggedIn === 'true') {
       // User is logged in
